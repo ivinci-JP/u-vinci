@@ -2,7 +2,7 @@ const CONSTS = {
   APP_NAME: "u-Vinci",
   APP_TAGLINE: "〜日本の豊かな田から取れた栄養のある米を〜",
   DEFAULT_SPACE: 2,
-  INITIAL_POSITON: {
+  INITIAL_POSITION: {
     lat: 35.692973,
     lng: 139.761738,
   },
