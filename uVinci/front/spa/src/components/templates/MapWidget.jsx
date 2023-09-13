@@ -42,7 +42,7 @@ const MapWidget = () => {
       )}
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={CONSTS.INITIAL_POSITON}
+        center={CONSTS.INITIAL_POSITION}
         zoom={CONSTS.INITIAL_ZOOM}
         onBoundsChanged={() => {
           console.log(map.getBounds());
