@@ -9,6 +9,11 @@ u-Vinci Frontend である。React を用いた SPA で、次のものと連携�
 
 ### API Key を設定
 
+Google Map の全機能を使う場合に設定\
+指定しない場合、`このページでは Google マップが正しく読み込まれませんでした。`等のメッセージが表示されるが、ダイアログを閉じて課題は実施可能
+
+#### 設定方法
+
 - 環境変数に REACT_APP_GOOGLE_MAPS_API_KEY を設定\
   .env.local ファイルを作成するか、シェルで設定する
 
