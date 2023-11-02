@@ -12,6 +12,7 @@ import ComentoesList from "../molecules/ComentoesList";
 // stub
 import uVinciAPIStub from "../../stub/uVinciAPIStub";
 import authStub from "../../stub/authStub";
+import statusCodes from "../../constants/statusCodes";
 
 const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const anchor = "right";
@@ -31,11 +32,18 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
         CONSTS.RESTAURANTS_PATHNAME
       }/${detailedShopId ?? ""}`
     );
+
     setLatestComentoes(comentoes);
     setShopName(name);
     setShopAccess(access);
     setShopUrl(url);
     setShopTagline(tagline);
+
+    if (status !== statusCodes.OK) {
+      alert(
+        "表示できません。何度も失敗する際は、管理者にお問い合わせください。"
+      );
+    }
 
     console.log({ status });
   }, [detailedShopId]);
@@ -60,7 +68,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
     <Drawer
       anchor={anchor}
       id="shop-detail-drawer"
-      open={detailedShopId != null}
+      open={detailedShopId != null && shopName != null}
       onClose={() => setDetailedShopId(null)}
     >
       <Box p={CONSTS.DEFAULT_SPACE}>

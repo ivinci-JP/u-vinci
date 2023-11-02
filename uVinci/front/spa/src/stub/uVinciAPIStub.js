@@ -11,13 +11,13 @@ const badRequest = {
   result: {},
   message: messages.BAD_REQUEST,
   status: statusCodes.BAD_REQUEST,
-};
+}
 
 const requestTimeout = {
   result: {},
   message: messages.REQUEST_TIMEOUT,
   status: statusCodes.REQUEST_TIMEOUT,
-};
+}; 
 
 const internalServerError = {
   result: {},
@@ -40,6 +40,7 @@ const getStub = (functionName, id) => {
     if (id.slice(-1) === "7") {
       return requestTimeout;
     }
+ 
 
     try {
       // eslint-disable-next-line import/no-dynamic-require, global-require
@@ -58,7 +59,7 @@ const getStub = (functionName, id) => {
   try {
     // eslint-disable-next-line import/no-dynamic-require, global-require
     const listForTheFunction = require(`./${functionName}.json`);
-
+    
     return {
       result: [...listForTheFunction, fakeInternalServerError],
       messages: messages.OK,
