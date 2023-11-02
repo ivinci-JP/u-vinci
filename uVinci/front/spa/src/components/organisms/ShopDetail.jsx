@@ -32,7 +32,6 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
         CONSTS.RESTAURANTS_PATHNAME
       }/${detailedShopId ?? ""}`
     );
-
     setLatestComentoes(comentoes);
     setShopName(name);
     setShopAccess(access);
