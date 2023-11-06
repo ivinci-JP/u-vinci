@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Divider, Drawer, Link, Typography } from "@material-ui/core";
+import statusCodes from "../../constants/statusCodes";
 
 // consts
 import CONSTS from "../../constants/consts";
@@ -38,6 +39,12 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
     setShopTagline(tagline);
 
     console.log({ status });
+    if (status !== statusCodes.OK) {
+      alert(
+        "表示できません。何度も失敗する際は、管理者にお問い合わせください。"
+      );
+    }
+
   }, [detailedShopId]);
 
   const handleLike = () => {
@@ -60,7 +67,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
     <Drawer
       anchor={anchor}
       id="shop-detail-drawer"
-      open={detailedShopId != null}
+      open={detailedShopId != null && shopName != null}
       onClose={() => setDetailedShopId(null)}
     >
       <Box p={CONSTS.DEFAULT_SPACE}>
