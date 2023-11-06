@@ -1,15 +1,8 @@
 // lib
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-import { Box, Divider, Drawer, Link, Typography } from "@material-ui/core";
-=======
-=======
->>>>>>> Stashed changes
+
 import { Box, Divider, Drawer, Link, Typography, Button } from "@material-ui/core";
-import statusCodes from "../../constants/statusCodes";
->>>>>>> Stashed changes
 
 // consts
 import CONSTS from "../../constants/consts";
