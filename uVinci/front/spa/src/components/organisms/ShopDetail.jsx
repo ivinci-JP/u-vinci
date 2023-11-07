@@ -1,7 +1,7 @@
 // lib
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Box, Divider, Drawer, Link, Typography } from "@material-ui/core";
+import { Box, Divider, Drawer, Link, Typography, Button} from "@material-ui/core";
 import statusCodes from "../../constants/statusCodes";
 
 // consts
@@ -63,6 +63,10 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
     setLatestComentoes(updatedComentoes);
   };
 
+  const closeShopDetail = () => {
+    setDetailedShopId(null);
+  }
+
   return (
     <Drawer
       anchor={anchor}
@@ -71,6 +75,10 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
       onClose={() => setDetailedShopId(null)}
     >
       <Box p={CONSTS.DEFAULT_SPACE}>
+        <Box margin={1} textAlign="right">
+          <Button variant="contained" size="small" onClick={closeShopDetail}>閉じる</Button>
+        </Box>
+
         <Box mb={CONSTS.DEFAULT_SPACE}>
           <Typography variant="h3">{shopName}</Typography>
           <Typography variant="subtitle1">{shopTagline}</Typography>
