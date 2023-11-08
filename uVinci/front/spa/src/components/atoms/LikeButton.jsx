@@ -29,13 +29,13 @@ const LikeButton = ({ handleLike ,isComent}) => {
       color="primary"
     >
       {isComent ? 
-      <Typography variant="button" noWrap>
-          米ん人をやめる
-      </Typography>
-        :
         <Typography variant="button" noWrap>
-        米ん人になる
-      </Typography>
+            米ん人をやめる
+        </Typography>
+          :
+          <Typography variant="button" noWrap>
+          米ん人になる
+        </Typography>
       }
     </Button>
   );
