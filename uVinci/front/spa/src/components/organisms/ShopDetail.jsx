@@ -38,7 +38,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
     setShopAccess(access);
     setShopUrl(url);
     setShopTagline(tagline);
-    
+
     console.log({ status });
     if (status !== statusCodes.OK) {
       alert(
@@ -58,7 +58,6 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
       body: { user: authStub.getUser() },
     };
 
-    
 
     if(isComento){
       setLatestComentoes(latestComentoes.filter(s => s.name !== option.body.user.name));
