@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const LikeButton = ({ handleLike }) => {
+const LikeButton = ({ handleLike ,isComent}) => {
   const classes = useStyles();
 
   return (
@@ -28,15 +28,22 @@ const LikeButton = ({ handleLike }) => {
       variant="contained"
       color="primary"
     >
+      {isComent ? 
       <Typography variant="button" noWrap>
+          米ん人をやめる
+      </Typography>
+        :
+        <Typography variant="button" noWrap>
         米ん人になる
       </Typography>
+      }
     </Button>
   );
 };
 
 LikeButton.propTypes = {
   handleLike: PropTypes.func.isRequired,
+  isComent: PropTypes.bool.isRequired
 };
 
 export default LikeButton;
