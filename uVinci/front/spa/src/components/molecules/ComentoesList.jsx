@@ -18,7 +18,6 @@ const ComentoesList = ({ comentoes, handleLike , isComento}) => (
         </ListItem>
       ))}
     </List>
-
     <LikeButton handleLike={handleLike} isComent={isComento} />
   </>
 );

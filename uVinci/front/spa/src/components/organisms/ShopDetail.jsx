@@ -47,7 +47,6 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
     const userName = authStub.getUser.name;
     const isAlreadyComento = (comento) => comento.name === userName;
     setIsComento(comentoes.some(isAlreadyComento));
-
   }, [detailedShopId]);
 
   const handleLike = () => {
