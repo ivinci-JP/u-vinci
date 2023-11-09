@@ -46,8 +46,8 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
       );
     }
 
-    const user = authStub.getUser.name;
-    const isAlreadyComento = (comento) => comento.name === user;
+    const userName = authStub.getUser.name;
+    const isAlreadyComento = (comento) => comento.name === userName;
     setIsComento(comentoes.some(isAlreadyComento));
 
   }, [detailedShopId]);
