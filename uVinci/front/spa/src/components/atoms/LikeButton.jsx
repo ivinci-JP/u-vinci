@@ -30,10 +30,10 @@ const LikeButton = ({ handleLike ,isComent}) => {
     >
       {isComent ? 
         <Typography variant="button" noWrap>
-            米ん人をやめる
+          米ん人をやめる
         </Typography>
           :
-          <Typography variant="button" noWrap>
+        <Typography variant="button" noWrap>
           米ん人になる
         </Typography>
       }

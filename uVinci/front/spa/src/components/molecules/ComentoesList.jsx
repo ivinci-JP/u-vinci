@@ -19,7 +19,7 @@ const ComentoesList = ({ comentoes, handleLike , isComento}) => (
       ))}
     </List>
 
-    <LikeButton handleLike={handleLike} isComent={isComento}/>
+    <LikeButton handleLike={handleLike} isComent={isComento} />
   </>
 );
 

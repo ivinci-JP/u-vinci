@@ -106,7 +106,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
         </Box>
 
         <Box>
-          <ComentoesList handleLike={handleLike} comentoes={latestComentoes} isComento={isComento}/>
+          <ComentoesList handleLike={handleLike} comentoes={latestComentoes} isComento={isComento} />
         </Box>
       </Box>
     </Drawer>
