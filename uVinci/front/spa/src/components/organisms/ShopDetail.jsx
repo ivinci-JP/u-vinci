@@ -29,9 +29,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
       result: { name, access, url, comentoes, catch: tagline } = {},
       status,
     } = uVinciAPIStub.get(
-      `http://${process.env.REACT_APP_API_HOSTNAME}/${
-        CONSTS.RESTAURANTS_PATHNAME
-      }/${detailedShopId ?? ""}`
+      `${CONSTS.RESTAURANTPATH}/${detailedShopId ?? ""}`
     );
     setLatestComentoes(comentoes);
     setShopName(name);
@@ -65,9 +63,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
     }else{
 
       const { result: { comentoes: updatedComentoes } = {} } = uVinciAPIStub.post(
-        `http://${process.env.REACT_APP_API_HOSTNAME}/${
-          CONSTS.RESTAURANTS_PATHNAME
-        }/${detailedShopId ?? ""}/${CONSTS.LIKE_PATHNAME}`,
+        `${CONSTS.RESTAURANTPATH}/${detailedShopId ?? ""}/${CONSTS.LIKE_PATHNAME}`,
         option
       );
 

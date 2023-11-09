@@ -9,6 +9,7 @@ const CONSTS = {
   INITIAL_ZOOM: 18,
   RESTAURANTS_PATHNAME: "restaurants",
   LIKE_PATHNAME: "like",
+  RESTAURANTPATH: `http://${process.env.REACT_APP_API_HOSTNAME}/restaurants`
 };
 
 export default CONSTS;
