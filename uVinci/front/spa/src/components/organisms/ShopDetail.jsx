@@ -22,7 +22,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const [shopAccess, setShopAccess] = useState();
   const [shopUrl, setShopUrl] = useState();
   const [shopTagline, setShopTagline] = useState();
-  const [isComento, setIsComento] = useState(false);
+  const [isComento, setIsComento] = useState();
 
   useEffect(() => {
     const {
@@ -44,9 +44,10 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
       );
     }
 
-    const userName = authStub.getUser.name;
+    const userName = authStub.getUser().name;
     const isAlreadyComento = (comento) => comento.name === userName;
     setIsComento(comentoes.some(isAlreadyComento));
+    
   }, [detailedShopId]);
 
   const handleLike = () => {
