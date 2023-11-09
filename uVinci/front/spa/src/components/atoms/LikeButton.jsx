@@ -13,7 +13,8 @@ const useStyles = makeStyles(() => ({
 
 const LikeButton = ({ handleLike ,isComent}) => {
   const classes = useStyles();
-
+  const buttonColor = isComent ? "secondary" : "primary";
+  
   return (
     <Button
       onClick={handleLike}
@@ -26,7 +27,7 @@ const LikeButton = ({ handleLike ,isComent}) => {
         />
       }
       variant="contained"
-      color="primary"
+      color={buttonColor}
     >
       {isComent ? 
         <Typography variant="button" noWrap>
