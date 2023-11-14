@@ -1,10 +1,10 @@
-// axios
-import axios from 'axios';
-
 // lib
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { Box, Divider, Drawer, Link, Typography } from "@material-ui/core";
+import PropTypes from "prop-types";
+
+// axios
+import axios from 'axios';
 
 // consts
 import CONSTS from "../../constants/consts";

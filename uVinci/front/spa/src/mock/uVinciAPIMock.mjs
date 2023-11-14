@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cors from 'cors';
 
-import express, { response } from 'express';
+import express from 'express';
 import messages from "../constants/messages.mjs";
 import statusCodes from "../constants/statusCodes.mjs";
 
@@ -44,7 +44,7 @@ const fakeInternalServerError = {
 };
 
 app.get('/restaurants/:id', (req, res) => {
-    const id = req.params.id;
+    const {id} = req.params.id;
 
     if (id) {
 
