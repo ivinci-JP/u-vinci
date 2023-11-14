@@ -29,9 +29,12 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
      axios.get(
      `http://localhost:4000/restaurants/${detailedShopId ?? ""}`
     ).then(response => {
-    const {name, comentoes, access, tagline, url} = response.data.result;
+    const {
+            result: {name, comentoes, access, catch: tagline, url}={}
+          }  = response.data;
     const {status} = response.data.status;
-    console.log(name)
+    console.log(response.data.result)
+    console.log(access)
     setLatestComentoes(comentoes);
     setShopName(name);
     setShopAccess(access);

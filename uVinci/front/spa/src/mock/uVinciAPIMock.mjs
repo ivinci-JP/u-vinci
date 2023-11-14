@@ -1,10 +1,13 @@
 import axios from 'axios';
+import cors from 'cors';
+
 import express, { response } from 'express';
 import messages from "../constants/messages.mjs";
 import statusCodes from "../constants/statusCodes.mjs";
 
 const app = express();
 const port = 4000;
+app.use(cors());
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
