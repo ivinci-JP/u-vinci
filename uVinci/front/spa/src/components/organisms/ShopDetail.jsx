@@ -1,3 +1,6 @@
+// axios
+import axios from 'axios';
+
 // lib
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
@@ -23,21 +26,20 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const [shopTagline, setShopTagline] = useState();
 
   useEffect(() => {
-    const {
-      result: { name, access, url, comentoes, catch: tagline } = {},
-      status,
-    } = uVinciAPIStub.get(
-      `${process.env.REACT_APP_API_HOSTNAME}/${
-        CONSTS.RESTAURANTS_PATHNAME
-      }/${detailedShopId ?? ""}`
-    );
+     axios.get(
+     `http://localhost:4000/restaurants/${detailedShopId ?? ""}`
+    ).then(response => {
+    const {name, comentoes, access, tagline, url} = response.data.result;
+
+    console.log(name)
     setLatestComentoes(comentoes);
     setShopName(name);
     setShopAccess(access);
     setShopUrl(url);
     setShopTagline(tagline);
 
-    console.log({ status });
+  
+    })
   }, [detailedShopId]);
 
   const handleLike = () => {
@@ -47,7 +49,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
     };
 
     const { result: { comentoes: updatedComentoes } = {} } = uVinciAPIStub.post(
-      `http://${process.env.REACT_APP_API_HOSTNAME}/${
+     `http://${process.env.REACT_APP_API_HOSTNAME}/${
         CONSTS.RESTAURANTS_PATHNAME
       }/${detailedShopId ?? ""}/${CONSTS.LIKE_PATHNAME}`,
       option
