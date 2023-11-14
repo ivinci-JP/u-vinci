@@ -30,11 +30,11 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
      `http://localhost:4000/restaurants/${detailedShopId ?? ""}`
     ).then(response => {
     const {
-            result: {name, comentoes, access, catch: tagline, url}={}
-          }  = response.data;
-    const {status} = response.data.status;
-    console.log(response.data.result)
-    console.log(access)
+            name, comentoes, access, catch: tagline, url
+          }  = response.data.result[0];
+    const {status} = response.data;
+
+    console.log(name)
     setLatestComentoes(comentoes);
     setShopName(name);
     setShopAccess(access);
