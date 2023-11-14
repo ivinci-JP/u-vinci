@@ -1,5 +1,5 @@
-import messages from "../constants/messages";
-import statusCodes from "../constants/statusCodes";
+import messages from "../constants/messages.mjs";
+import statusCodes from "../constants/statusCodes.mjs";
 
 const dataNotFound = {
   result: [],

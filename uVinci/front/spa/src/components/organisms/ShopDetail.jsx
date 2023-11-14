@@ -27,7 +27,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
       result: { name, access, url, comentoes, catch: tagline } = {},
       status,
     } = uVinciAPIStub.get(
-      `http://${process.env.REACT_APP_API_HOSTNAME}/${
+      `${process.env.REACT_APP_API_HOSTNAME}/${
         CONSTS.RESTAURANTS_PATHNAME
       }/${detailedShopId ?? ""}`
     );

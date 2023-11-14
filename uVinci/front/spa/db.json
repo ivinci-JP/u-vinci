@@ -2,6 +2,7 @@
     "restaurants":
         [ 
                 {
+                    "shopId": "SHOP01",
                     "id": "SHOP01",
                     "name": "牛島食堂",
                     "access": "パレスサイドオフィス神保町から徒歩2ふん",
@@ -11,6 +12,7 @@
                 }
             , 
                 {
+                    "shopId": "SHOP02",
                     "id": "SHOP02",
                     "name": "カウカウバル",
                     "access": "パレスサイドオフィス神保町から徒歩1ふん",
@@ -23,6 +25,7 @@
                 }
             ,
                 {
+                    "shopId": "SHOP03",
                     "id": "SHOP03",
                     "name": "牛千万",
                     "access": "竹橋駅から徒歩4ふん",
@@ -36,6 +39,7 @@
                 }
             ,
                 {
+                    "shopId": "SHOP04",
                     "id": "SHOP04",
                     "name": "和菓子と中華 牛島飯店",
                     "access": "そらあ内緒くさ",
@@ -50,6 +54,7 @@
                 }
             ,
                 {
+                    "shopId": "SHOP05",
                     "id": "SHOP05",
                     "name": "ワインとピッツァとパスタ バル カウカウ 神保町2合店",
                     "access": "駅から徒歩1ふん",
@@ -59,6 +64,7 @@
                 }
             ,
                 {
+                    "shopId": "SHOP06",
                     "id": "SHOP06",
                     "name": "焼き鳥の牛島",
                     "access": "パレスサイドオフィス神保町から徒歩2ふん",
@@ -68,6 +74,7 @@
                 }
             ,
                 {
+                    "shopId": "SHOP07",
                     "id": "SHOP03",
                     "name": "割烹やモーモー 神田錦町3丁目店",
                     "access": "パレスサイドオフィス神保町から徒歩1ふん",
@@ -81,6 +88,7 @@
                 }  
             ,
                 {
+                    "shopId": "SHOP08",
                     "id": "SHOP03",
                     "name": "ジンギスカンのトリトン 小川町交差点3号店",
                     "access": "神保町駅から徒歩4ふん",
@@ -90,6 +98,7 @@
                 }          
             ,
                 {
+                    "shopId": "SHOP09",
                     "id": "SHOP04",
                     "name": "うどんノース",
                     "access": "そらあ内緒くさ",
@@ -100,9 +109,9 @@
         ]
     ,
 
-    "user":{
-        "authUser" :[{ "id": "U88888", "name": "シンニュー・シャイン" }]
-    }
+    "user":[
+        { "authUser" :[{ "id": "U88888", "name": "シンニュー・シャイン" }]}
+    ]
     ,
 
     "restaurantLocation":[
@@ -115,5 +124,10 @@
         { "id": "SHOP07", "lat": 35.693715, "lng": 139.7625636 },
         { "id": "SHOP08", "lat": 35.693655, "lng": 139.7636231 },
         { "id": "SHOP09", "lat": 35.69393, "lng": 139.7623223 }
+    ]
+    ,
+
+    "token":[
+        {"token" : "almost-everything–all-external-expectations-all-pride-all-fear-of-embarrassment-or-failure–these-things-just-fall-away-in-the-face-of-death-leaving-only-what-is-truly-important"}
     ]
 }
