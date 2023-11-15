@@ -45,7 +45,7 @@ const fakeInternalServerError = {
 
 app.get('/restaurants', (req, res) => {
     const {id} = req.query;
-   
+
     if (id) {
 
         if (id === fakeInternalServerError.id) {
