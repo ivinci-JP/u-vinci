@@ -1,5 +1,6 @@
 // lib
-import { memo, useCallback, useState } from "react";
+import axios from "axios";
+import { memo, useCallback, useEffect, useState } from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { CircularProgress } from "@material-ui/core";
 
@@ -18,6 +19,8 @@ const containerStyle = {
 const MapWidget = () => {
   const [detailedShopId, setDetailedShopId] = useState(null);
   const [map, setMap] = useState(null);
+  const [isReadyLocationData, setIsReadyLocationData] = useState(false);
+  const [shops, setShops] = useState();
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -32,7 +35,16 @@ const MapWidget = () => {
     setMap(null);
   }, []);
 
-  return isLoaded ? (
+  useEffect(() => {
+    axios.get(
+      `http://localhost:4000/restaurants?id=}`
+    ).then(response => {
+          setShops(response.data.result);
+          setIsReadyLocationData(true);
+    });
+  }, [isLoaded]);
+
+  return (isLoaded && isReadyLocationData) ? (
     <>
       {detailedShopId != null && (
         <ShopDetail
@@ -50,7 +62,7 @@ const MapWidget = () => {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-        <ShopMarkers setDetailedShopId={setDetailedShopId} />
+        <ShopMarkers setDetailedShopId={setDetailedShopId} shops={shops}/>
       </GoogleMap>
     </>
   ) : (

@@ -1,16 +1,10 @@
 
 // lib
-import axios from "axios";
 import PropTypes from "prop-types";
 import { Marker } from "@react-google-maps/api";
 
-const ShopMarkers = ({ setDetailedShopId }) => {
-  
-  axios.get(
-    `http://localhost:4000/restaurantLocation`
-  ).then(response => {
-        const  shops  = response.data;
-        console.log(response)
+const ShopMarkers = ({setDetailedShopId , shops}) => {
+        console.log(shops)
 
         return shops.map(({ lat, lng, id }) => (
           <Marker
@@ -21,12 +15,10 @@ const ShopMarkers = ({ setDetailedShopId }) => {
             }}
           />
         ));
-      }
-  );
-
-  ShopMarkers.propTypes = {
-    setDetailedShopId: PropTypes.func.isRequired,
-  };
 }
+
+ShopMarkers.propTypes = {
+  setDetailedShopId: PropTypes.func.isRequired,
+};
 
 export default ShopMarkers;

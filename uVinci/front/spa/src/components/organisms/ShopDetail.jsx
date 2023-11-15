@@ -27,7 +27,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
 
   useEffect(() => {
      axios.get(
-     `http://localhost:4000/restaurants/${detailedShopId ?? ""}`
+     `http://localhost:4000/restaurants?id=${detailedShopId ?? ""}`
     ).then(response => {
     const {
             name, comentoes, access, catch: tagline, url

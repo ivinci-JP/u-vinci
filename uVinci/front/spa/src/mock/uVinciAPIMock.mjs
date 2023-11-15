@@ -43,9 +43,9 @@ const fakeInternalServerError = {
     lng: 139.761738,
 };
 
-app.get('/restaurants/:id', (req, res) => {
-    const {id} = req.params.id;
-
+app.get('/restaurants', (req, res) => {
+    const {id} = req.query;
+   
     if (id) {
 
         if (id === fakeInternalServerError.id) {
