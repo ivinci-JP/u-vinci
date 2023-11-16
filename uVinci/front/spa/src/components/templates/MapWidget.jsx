@@ -37,12 +37,14 @@ const MapWidget = () => {
 
   useEffect(() => {
     axios.get(
-      `http://localhost:4000/restaurants?id=}`
+      `http://localhost:4000/restaurants?id=`
     ).then(response => {
           setShops(response.data.result);
           setIsReadyLocationData(true);
     });
   }, [isLoaded]);
+  console.log(isLoaded)
+  console.log(isReadyLocationData)
 
   return (isLoaded && isReadyLocationData) ? (
     <>
