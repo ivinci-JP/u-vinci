@@ -4,11 +4,11 @@ const CONSTS = {
   DEFAULT_SPACE: 2,
   INITIAL_POSITION: {
     lat: 35.692973,
-    lng: 139.761738,
+    lng: 139.761738
   },
   INITIAL_ZOOM: 18,
   RESTAURANTS_PATHNAME: "restaurants",
-  LIKE_PATHNAME: "like",
+  LIKE_PATHNAME: "like"
 };
 
 export default CONSTS;

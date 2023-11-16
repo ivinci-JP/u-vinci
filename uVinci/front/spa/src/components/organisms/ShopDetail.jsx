@@ -4,7 +4,7 @@ import { Box, Divider, Drawer, Link, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 
 // axios
-import axios from 'axios';
+import axios from "axios";
 
 // consts
 import CONSTS from "../../constants/consts";
@@ -26,29 +26,32 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const [shopTagline, setShopTagline] = useState();
 
   useEffect(() => {
-     axios.get(
-     `http://localhost:4000/restaurants?id=${detailedShopId ?? ""}`
-    ).then(response => {
-    const {
-            name, comentoes, access, catch: tagline, url
-          }  = response.data.result[0];
-    const {status} = response.data;
+    axios
+      .get(`http://localhost:4000/restaurants?id=${detailedShopId ?? ""}`)
+      .then((response) => {
+        const {
+          name,
+          comentoes,
+          access,
+          catch: tagline,
+          url
+        } = response.data.result[0];
+        const { status } = response.data;
 
-    console.log(name)
-    setLatestComentoes(comentoes);
-    setShopName(name);
-    setShopAccess(access);
-    setShopUrl(url);
-    setShopTagline(tagline);
-    console.log(status);
-  
-    })
+        console.log(name);
+        setLatestComentoes(comentoes);
+        setShopName(name);
+        setShopAccess(access);
+        setShopUrl(url);
+        setShopTagline(tagline);
+        console.log(status);
+      });
   }, [detailedShopId]);
 
   const handleLike = () => {
     const option = {
       header: { token: authStub.getToken() },
-      body: { user: authStub.getUser() },
+      body: { user: authStub.getUser() }
     };
 
     const { result: { comentoes: updatedComentoes } = {} } = uVinciAPIStub.post(
@@ -92,11 +95,11 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
 
 ShopDetail.propTypes = {
   detailedShopId: PropTypes.string,
-  setDetailedShopId: PropTypes.func.isRequired,
+  setDetailedShopId: PropTypes.func.isRequired
 };
 
 ShopDetail.defaultProps = {
-  detailedShopId: null,
+  detailedShopId: null
 };
 
 export default ShopDetail;

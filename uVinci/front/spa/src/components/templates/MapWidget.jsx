@@ -13,7 +13,7 @@ import ShopDetail from "../organisms/ShopDetail";
 
 const containerStyle = {
   height: "100%",
-  width: "100%",
+  width: "100%"
 };
 
 const MapWidget = () => {
@@ -24,7 +24,7 @@ const MapWidget = () => {
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
   });
 
   const onLoad = useCallback((initiatedMap) => {
@@ -36,17 +36,15 @@ const MapWidget = () => {
   }, []);
 
   useEffect(() => {
-    axios.get(
-      `http://localhost:4000/restaurants?id=`
-    ).then(response => {
-          setShops(response.data.result);
-          setIsReadyLocationData(true);
+    axios.get(`http://localhost:4000/restaurants?id=`).then((response) => {
+      setShops(response.data.result);
+      setIsReadyLocationData(true);
     });
   }, [isLoaded]);
-  console.log(isLoaded)
-  console.log(isReadyLocationData)
+  console.log(isLoaded);
+  console.log(isReadyLocationData);
 
-  return (isLoaded && isReadyLocationData) ? (
+  return isLoaded && isReadyLocationData ? (
     <>
       {detailedShopId != null && (
         <ShopDetail
@@ -64,7 +62,7 @@ const MapWidget = () => {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-        <ShopMarkers setDetailedShopId={setDetailedShopId} shops={shops}/>
+        <ShopMarkers setDetailedShopId={setDetailedShopId} shops={shops} />
       </GoogleMap>
     </>
   ) : (
