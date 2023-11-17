@@ -7,9 +7,10 @@
   "scripts": {
     "start": "react-scripts start",
     "prepare": "cd ../../../ && husky install",
-    "startExpress": "node src/mock/uVinciAPIMock.mjs",
-    "startJsonServer":  "npx json-server --watch db.json -p 3000",
-    "startMockVersion": "npm-run-all start startExpress startJsonServer"
+    "startuVinci": "npm run startMockServer && PORT=3001 npm start",
+    "startExpress": "node src/mock/uVinciAPIMock.mjs &",
+    "startJsonServer": "npx json-server --watch db.json -p 3000 &",
+    "startMockServer": "npm-run-all -p startExpress startJsonServer"
   },
   "browserslist": {
     "production": [
@@ -51,6 +52,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1"
   },
   "lint-staged": {

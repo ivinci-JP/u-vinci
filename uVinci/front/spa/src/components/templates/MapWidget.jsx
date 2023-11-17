@@ -41,6 +41,7 @@ const MapWidget = () => {
       setIsShopListLoaded(true);
     });
   }, [isLoaded]);
+  console.log(isShopListLoaded);
 
   return isLoaded ? (
     <>
@@ -61,7 +62,7 @@ const MapWidget = () => {
         onUnmount={onUnmount}
       >
         {isShopListLoaded && (
-          <ShopMarkers shops={shops}  setDetailedShopId={setDetailedShopId}/>
+          <ShopMarkers shops={shops} setDetailedShopId={setDetailedShopId} />
         )}
       </GoogleMap>
     </>
