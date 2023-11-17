@@ -6,7 +6,10 @@
   "description": "Map application for job training including bugs on purpose.",
   "scripts": {
     "start": "react-scripts start",
-    "prepare": "cd ../../../ && husky install"
+    "prepare": "cd ../../../ && husky install",
+    "startExpress": "node src/mock/uVinciAPIMock.mjs",
+    "startJsonServer":  "npx json-server --watch db.json -p 3000",
+    "startMockVersion": "npm-run-all start startExpress startJsonServer"
   },
   "browserslist": {
     "production": [

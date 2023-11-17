@@ -2,10 +2,9 @@
 import PropTypes from "prop-types";
 import { Marker } from "@react-google-maps/api";
 
-const ShopMarkers = ({ setDetailedShopId, shops }) => {
-  console.log(shops);
+const ShopMarkers = ({ setDetailedShopId, shops }) => 
 
-  return shops.map(({ lat, lng, id }) => (
+   shops.map(({ lat, lng, id }) => (
     <Marker
       position={{ lat, lng }}
       key={id}
@@ -14,7 +13,7 @@ const ShopMarkers = ({ setDetailedShopId, shops }) => {
       }}
     />
   ));
-};
+
 
 ShopMarkers.propTypes = {
   setDetailedShopId: PropTypes.func.isRequired
