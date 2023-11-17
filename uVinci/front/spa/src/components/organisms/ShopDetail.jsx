@@ -27,7 +27,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/restaurants?id=${detailedShopId ?? ""}`)
+      .get(`${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=${detailedShopId ?? ""}`)
       .then((response) => {
         const {
           name,

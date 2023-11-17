@@ -36,7 +36,7 @@ const MapWidget = () => {
   }, []);
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/restaurants?id=`).then((response) => {
+    axios.get(`${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=`).then((response) => {
       setShops(response.data.result);
       setIsShopListLoaded(true);
     });
