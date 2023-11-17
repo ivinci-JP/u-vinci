@@ -36,15 +36,15 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
           catch: tagline,
           url
         } = response.data.result[0];
+        console.log(response.data.result[0])
         const { status } = response.data;
 
-        console.log(name);
         setLatestComentoes(comentoes);
         setShopName(name);
         setShopAccess(access);
         setShopUrl(url);
         setShopTagline(tagline);
-        console.log(status);
+        console.log(status)
       });
   }, [detailedShopId]);
 

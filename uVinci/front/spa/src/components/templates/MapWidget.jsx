@@ -19,7 +19,7 @@ const containerStyle = {
 const MapWidget = () => {
   const [detailedShopId, setDetailedShopId] = useState(null);
   const [map, setMap] = useState(null);
-  const [isReadyLocationData, setIsReadyLocationData] = useState(false);
+  const [isShopListLoaded, setIsShopListLoaded] = useState(false);
   const [shops, setShops] = useState();
 
   const { isLoaded } = useJsApiLoader({
@@ -38,13 +38,11 @@ const MapWidget = () => {
   useEffect(() => {
     axios.get(`http://localhost:4000/restaurants?id=`).then((response) => {
       setShops(response.data.result);
-      setIsReadyLocationData(true);
+      setIsShopListLoaded(true);
     });
   }, [isLoaded]);
-  console.log(isLoaded);
-  console.log(isReadyLocationData);
 
-  return isLoaded && isReadyLocationData ? (
+  return isLoaded ? (
     <>
       {detailedShopId != null && (
         <ShopDetail
@@ -62,7 +60,10 @@ const MapWidget = () => {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
+       {isShopListLoaded && (
         <ShopMarkers setDetailedShopId={setDetailedShopId} shops={shops} />
+       )}
+       
       </GoogleMap>
     </>
   ) : (
