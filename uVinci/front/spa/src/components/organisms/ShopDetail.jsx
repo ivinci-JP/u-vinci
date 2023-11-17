@@ -36,7 +36,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
           catch: tagline,
           url
         } = response.data.result[0];
-        console.log(response.data.result[0]);
+        
         const { status } = response.data;
 
         setLatestComentoes(comentoes);

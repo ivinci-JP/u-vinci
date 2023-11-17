@@ -41,7 +41,6 @@ const MapWidget = () => {
       setIsShopListLoaded(true);
     });
   }, [isLoaded]);
-  console.log(isShopListLoaded);
 
   return isLoaded ? (
     <>
