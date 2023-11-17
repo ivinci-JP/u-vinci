@@ -7,10 +7,11 @@
   "scripts": {
     "start": "react-scripts start",
     "prepare": "cd ../../../ && husky install",
-    "startuVinci": "npm run startMockServer && PORT=3001 npm start",
+    "startReact": "PORT=3001 npm start",
     "startExpress": "node src/mock/uVinciAPIMock.mjs &",
     "startJsonServer": "npx json-server --watch db.json -p 3000 &",
-    "startMockServer": "npm-run-all -p startExpress startJsonServer"
+    "startMockServer": "npm-run-all -p startExpress startJsonServer",
+    "startuVinci": "npm-run-all -s startMockServer startReact"
   },
   "browserslist": {
     "production": [
