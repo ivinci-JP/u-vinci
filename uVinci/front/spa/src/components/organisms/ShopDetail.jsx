@@ -36,7 +36,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
           catch: tagline,
           url
         } = response.data.result[0];
-        console.log(response.data.result[0])
+        console.log(response.data.result[0]);
         const { status } = response.data;
 
         setLatestComentoes(comentoes);
@@ -44,7 +44,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
         setShopAccess(access);
         setShopUrl(url);
         setShopTagline(tagline);
-        console.log(status)
+        console.log(status);
       });
   }, [detailedShopId]);
 

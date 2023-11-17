@@ -60,10 +60,9 @@ const MapWidget = () => {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-       {isShopListLoaded && (
-        <ShopMarkers setDetailedShopId={setDetailedShopId} shops={shops} />
-       )}
-       
+        {isShopListLoaded && (
+          <ShopMarkers shops={shops}  setDetailedShopId={setDetailedShopId}/>
+        )}
       </GoogleMap>
     </>
   ) : (
