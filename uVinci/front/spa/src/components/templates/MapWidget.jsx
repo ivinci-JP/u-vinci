@@ -36,11 +36,13 @@ const MapWidget = () => {
   }, []);
 
   useEffect(() => {
-    axios.get(`${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=`).then((response) => {
-      setShops(response.data.result);
-      setIsShopListLoaded(true);
-    });
-  }, [isLoaded]);
+    axios
+      .get(`${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=`)
+      .then((response) => {
+        setShops(response.data.result);
+        setIsShopListLoaded(true);
+      });
+  }, [map]);
 
   return isLoaded ? (
     <>

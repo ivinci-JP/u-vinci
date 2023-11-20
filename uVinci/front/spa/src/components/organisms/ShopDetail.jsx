@@ -27,17 +27,20 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
 
   useEffect(() => {
     axios
-      .get(`${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=${detailedShopId ?? ""}`)
+      .get(
+        `${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=${
+          detailedShopId ?? ""
+        }`
+      )
       .then((response) => {
-
         const {
           name,
           comentoes,
           access,
           catch: tagline,
           url
-        } = response.data.detailedInformation;
-       
+        } = response.data.result;
+
         const { status } = response.status;
 
         setLatestComentoes(comentoes);

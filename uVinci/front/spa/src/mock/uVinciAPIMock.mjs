@@ -60,15 +60,13 @@ app.get("/restaurants", (req, res) => {
     }
 
     try {
-      
       axios
         .get(`http://localhost:3000/restaurants?shopId=${id}`)
         .then((contents) => {
-          
-          const detailedInformation = contents.data[0];
+          const result = contents.data[0];
 
           res.send({
-            detailedInformation,
+            result,
             messages: messages.OK,
             status: statusCodes.OK
           });
@@ -88,8 +86,6 @@ app.get("/restaurants", (req, res) => {
         messages: messages.OK,
         status: statusCodes.OK
       });
-
-      
     });
   } catch {
     res.send(dataNotFound);
