@@ -5,7 +5,7 @@ import { List, ListItem, ListItemText, Typography } from "@material-ui/core";
 // components and consts
 import LikeButton from "../atoms/LikeButton";
 
-const ComentoesList = ({ comentoes, handleLike }) => (
+const ComentoesList = ({ comentoes, handleLike , isComento}) => (
   <>
     <Typography variant="h5" display="inline">
       米ん人一覧
@@ -18,7 +18,7 @@ const ComentoesList = ({ comentoes, handleLike }) => (
         </ListItem>
       ))}
     </List>
-    <LikeButton handleLike={handleLike} />
+    <LikeButton handleLike={handleLike} isComent={isComento} />
   </>
 );
 
@@ -30,6 +30,7 @@ ComentoesList.propTypes = {
     })
   ).isRequired,
   handleLike: PropTypes.func.isRequired,
+  isComento: PropTypes.bool.isRequired
 };
 
 export default ComentoesList;

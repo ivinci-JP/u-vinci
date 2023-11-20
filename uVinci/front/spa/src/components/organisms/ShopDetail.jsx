@@ -22,15 +22,14 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const [shopAccess, setShopAccess] = useState();
   const [shopUrl, setShopUrl] = useState();
   const [shopTagline, setShopTagline] = useState();
+  const [isComento, setIsComento] = useState();
 
   useEffect(() => {
     const {
       result: { name, access, url, comentoes, catch: tagline } = {},
       status,
     } = uVinciAPIStub.get(
-      `http://${process.env.REACT_APP_API_HOSTNAME}/${
-        CONSTS.RESTAURANTS_PATHNAME
-      }/${detailedShopId ?? ""}`
+      `${CONSTS.RESTAURANTPATH}/${detailedShopId ?? ""}`
     );
     setLatestComentoes(comentoes);
     setShopName(name);
@@ -45,6 +44,10 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
       );
     }
 
+    const userName = authStub.getUser().name;
+    const isAlreadyComento = (comento) => comento.name === userName;
+    setIsComento(comentoes.some(isAlreadyComento));
+    
   }, [detailedShopId]);
 
   const handleLike = () => {
@@ -53,14 +56,20 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
       body: { user: authStub.getUser() },
     };
 
-    const { result: { comentoes: updatedComentoes } = {} } = uVinciAPIStub.post(
-      `http://${process.env.REACT_APP_API_HOSTNAME}/${
-        CONSTS.RESTAURANTS_PATHNAME
-      }/${detailedShopId ?? ""}/${CONSTS.LIKE_PATHNAME}`,
-      option
-    );
 
-    setLatestComentoes(updatedComentoes);
+    if(isComento){
+      setLatestComentoes(latestComentoes.filter(s => s.name !== option.body.user.name));
+      setIsComento(false);
+    }else{
+
+      const { result: { comentoes: updatedComentoes } = {} } = uVinciAPIStub.post(
+        `${CONSTS.RESTAURANTPATH}/${detailedShopId ?? ""}/${CONSTS.LIKE_PATHNAME}`,
+        option
+      );
+
+      setLatestComentoes(updatedComentoes);
+      setIsComento(true)
+    }
   };
 
   const closeShopDetail = () => {
@@ -93,7 +102,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
         </Box>
 
         <Box>
-          <ComentoesList handleLike={handleLike} comentoes={latestComentoes} />
+          <ComentoesList handleLike={handleLike} comentoes={latestComentoes} isComento={isComento} />
         </Box>
       </Box>
     </Drawer>
