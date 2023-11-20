@@ -41,14 +41,11 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
           url
         } = response.data.result;
 
-        const { status } = response.status;
-
         setLatestComentoes(comentoes);
         setShopName(name);
         setShopAccess(access);
         setShopUrl(url);
         setShopTagline(tagline);
-        console.log(status);
       });
   }, [detailedShopId]);
 
