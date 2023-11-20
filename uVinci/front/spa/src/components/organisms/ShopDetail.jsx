@@ -16,6 +16,16 @@ import ComentoesList from "../molecules/ComentoesList";
 import uVinciAPIStub from "../../stub/uVinciAPIStub";
 import authStub from "../../stub/authStub";
 
+const axiosInstance = axios.create();
+axiosInstance.interceptors.response.use(tmp => {
+    const result = {
+      "result": tmp.data.result
+    }
+
+    return result
+  }
+)
+
 const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const anchor = "right";
 
@@ -26,7 +36,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const [shopTagline, setShopTagline] = useState();
 
   useEffect(() => {
-    axios
+    axiosInstance
       .get(
         `${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=${
           detailedShopId ?? ""
@@ -39,7 +49,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
           access,
           catch: tagline,
           url
-        } = response.data.result;
+        } = response.result;
 
         setLatestComentoes(comentoes);
         setShopName(name);

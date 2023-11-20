@@ -11,6 +11,15 @@ import CONSTS from "../../constants/consts";
 import ShopMarkers from "../molecules/ShopMarkers";
 import ShopDetail from "../organisms/ShopDetail";
 
+const axiosInstance = axios.create();
+axiosInstance.interceptors.response.use(tmp => {
+  const result = {
+    "result": tmp.data.result
+  }
+
+  return result;
+})
+
 const containerStyle = {
   height: "100%",
   width: "100%"
@@ -26,7 +35,6 @@ const MapWidget = () => {
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
   });
-  
   const onLoad = useCallback((initiatedMap) => {
     setMap(initiatedMap);
   }, []);
@@ -36,10 +44,11 @@ const MapWidget = () => {
   }, []);
 
   useEffect(() => {
-    axios
+    axiosInstance
       .get(`${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=`)
       .then((response) => {
-        setShops(response.data.result);
+ 
+        setShops(response.result);
         setIsShopListLoaded(true);
       });
   }, [isLoaded]);
