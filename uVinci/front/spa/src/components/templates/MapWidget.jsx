@@ -42,7 +42,7 @@ const MapWidget = () => {
         setShops(response.data.result);
         setIsShopListLoaded(true);
       });
-  }, [map]);
+  }, [isLoaded]);
 
   return isLoaded ? (
     <>
