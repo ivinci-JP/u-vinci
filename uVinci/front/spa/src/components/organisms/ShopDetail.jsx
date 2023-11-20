@@ -29,15 +29,16 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
     axios
       .get(`${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=${detailedShopId ?? ""}`)
       .then((response) => {
+
         const {
           name,
           comentoes,
           access,
           catch: tagline,
           url
-        } = response.data.result[0];
-
-        const { status } = response.data;
+        } = response.data.detailedInformation;
+       
+        const { status } = response.status;
 
         setLatestComentoes(comentoes);
         setShopName(name);
