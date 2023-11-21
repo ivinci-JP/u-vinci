@@ -5,7 +5,9 @@ const axiosInstance = () => {
 
   tmpAxiosInstance.interceptors.response.use((tmp) => {
     const result = {
-      result: tmp.data.result
+      result: tmp.data.result,
+      status: tmp.status,
+      message: tmp.message
     };
 
     return result;
