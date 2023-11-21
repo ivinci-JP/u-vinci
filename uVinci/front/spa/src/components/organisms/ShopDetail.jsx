@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import { Box, Divider, Drawer, Link, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 
-// axios
-import axiosInstance from "../../client/index.mjs";
 
 // consts
 import CONSTS from "../../constants/consts";
@@ -16,6 +14,9 @@ import ComentoesList from "../molecules/ComentoesList";
 import uVinciAPIStub from "../../stub/uVinciAPIStub";
 import authStub from "../../stub/authStub";
 
+// service
+import request from "../../service/index";
+
 const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const anchor = "right";
 
@@ -26,27 +27,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const [shopTagline, setShopTagline] = useState();
 
   useEffect(() => {
-    axiosInstance()
-      .get(
-        `${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=${
-          detailedShopId ?? ""
-        }`
-      )
-      .then((response) => {
-        const {
-          name,
-          comentoes,
-          access,
-          catch: tagline,
-          url
-        } = response.result;
-
-        setLatestComentoes(comentoes);
-        setShopName(name);
-        setShopAccess(access);
-        setShopUrl(url);
-        setShopTagline(tagline);
-      });
+    request.getShopDetails(setLatestComentoes, setShopName, setShopAccess, setShopUrl, setShopTagline, detailedShopId)
   }, [detailedShopId]);
 
   const handleLike = () => {

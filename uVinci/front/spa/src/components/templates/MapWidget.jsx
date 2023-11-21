@@ -2,7 +2,6 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { CircularProgress } from "@material-ui/core";
-import  axiosInstance  from "../../client/index.mjs";
 
 // consts
 import CONSTS from "../../constants/consts";
@@ -11,7 +10,8 @@ import CONSTS from "../../constants/consts";
 import ShopMarkers from "../molecules/ShopMarkers";
 import ShopDetail from "../organisms/ShopDetail";
 
-
+// service
+import request from "../../service/index";
 
 const containerStyle = {
   height: "100%",
@@ -37,12 +37,7 @@ const MapWidget = () => {
   }, []);
 
   useEffect(() => {
-    axiosInstance()
-      .get(`${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=`)
-      .then((response) => {
-        setShops(response.result);
-        setIsShopListLoaded(true);
-      });
+    request.getShopList(setShops, setIsShopListLoaded)
   }, [isLoaded]);
 
   return isLoaded ? (
