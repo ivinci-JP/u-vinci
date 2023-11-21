@@ -27,7 +27,7 @@ const containerStyle = {
 
 const MapWidget = () => {
   const [detailedShopId, setDetailedShopId] = useState(null);
-  const [map, setMap] = useState(null);
+  const [mapView, setMapView] = useState(null);
   const [isShopListLoaded, setIsShopListLoaded] = useState(false);
   const [shops, setShops] = useState();
 
@@ -36,11 +36,11 @@ const MapWidget = () => {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
   });
   const onLoad = useCallback((initiatedMap) => {
-    setMap(initiatedMap);
+    setMapView(initiatedMap);
   }, []);
 
   const onUnmount = useCallback(() => {
-    setMap(null);
+    setMapView(null);
   }, []);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const MapWidget = () => {
         center={CONSTS.INITIAL_POSITION}
         zoom={CONSTS.INITIAL_ZOOM}
         onBoundsChanged={() => {
-          console.log(map.getBounds());
+          console.log(mapView.getBounds());
         }}
         onLoad={onLoad}
         onUnmount={onUnmount}
