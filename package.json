@@ -18,7 +18,6 @@
   },
   "homepage": "/",
   "workspaces": [
-    "u-vinci_draft",
     "uVinci/front/spa",
     "uVinci/api"
   ],

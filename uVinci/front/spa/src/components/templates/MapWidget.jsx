@@ -37,7 +37,7 @@ const MapWidget = () => {
   }, []);
 
   useEffect(() => {
-    request.getShopList(setShops, setIsShopListLoaded)
+    request.getShopList(setShops, setIsShopListLoaded);
   }, [isLoaded]);
 
   return isLoaded ? (

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Box, Divider, Drawer, Link, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 
-
 // consts
 import CONSTS from "../../constants/consts";
 
@@ -27,7 +26,14 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const [shopTagline, setShopTagline] = useState();
 
   useEffect(() => {
-    request.getShopDetails(setLatestComentoes, setShopName, setShopAccess, setShopUrl, setShopTagline, detailedShopId)
+    request.getShopDetails(
+      setLatestComentoes,
+      setShopName,
+      setShopAccess,
+      setShopUrl,
+      setShopTagline,
+      detailedShopId
+    );
   }, [detailedShopId]);
 
   const handleLike = () => {
