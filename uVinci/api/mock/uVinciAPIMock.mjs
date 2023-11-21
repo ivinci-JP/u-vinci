@@ -16,31 +16,31 @@ app.listen(port, () => {
 const dataNotFound = {
   result: [],
   message: messages.NO_CONTENT,
-  status: statusCodes.NO_CONTENT
+  status: statusCodes.NO_CONTENT,
 };
 
 const badRequest = {
   result: {},
   message: messages.BAD_REQUEST,
-  status: statusCodes.BAD_REQUEST
+  status: statusCodes.BAD_REQUEST,
 };
 
 const requestTimeout = {
   result: {},
   message: messages.REQUEST_TIMEOUT,
-  status: statusCodes.REQUEST_TIMEOUT
+  status: statusCodes.REQUEST_TIMEOUT,
 };
 
 const internalServerError = {
   result: {},
   message: messages.INTERNAL_SERVER_ERROR,
-  status: statusCodes.INTERNAL_SERVER_ERROR
+  status: statusCodes.INTERNAL_SERVER_ERROR,
 };
 
 const fakeInternalServerError = {
   id: "iVinciSince2012",
   lat: 35.692973,
-  lng: 139.761738
+  lng: 139.761738,
 };
 
 app.get("/restaurants", (req, res) => {
@@ -68,7 +68,7 @@ app.get("/restaurants", (req, res) => {
           res.send({
             result,
             messages: messages.OK,
-            status: statusCodes.OK
+            status: statusCodes.OK,
           });
         });
 
@@ -84,7 +84,7 @@ app.get("/restaurants", (req, res) => {
       res.send({
         result: [...listForTheFunction, fakeInternalServerError],
         messages: messages.OK,
-        status: statusCodes.OK
+        status: statusCodes.OK,
       });
     });
   } catch {
