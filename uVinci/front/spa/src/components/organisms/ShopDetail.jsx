@@ -17,14 +17,13 @@ import uVinciAPIStub from "../../stub/uVinciAPIStub";
 import authStub from "../../stub/authStub";
 
 const axiosInstance = axios.create();
-axiosInstance.interceptors.response.use(tmp => {
-    const result = {
-      "result": tmp.data.result
-    }
+axiosInstance.interceptors.response.use((tmp) => {
+  const result = {
+    result: tmp.data.result
+  };
 
-    return result
-  }
-)
+  return result;
+});
 
 const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const anchor = "right";

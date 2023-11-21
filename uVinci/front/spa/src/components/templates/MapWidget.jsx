@@ -12,13 +12,13 @@ import ShopMarkers from "../molecules/ShopMarkers";
 import ShopDetail from "../organisms/ShopDetail";
 
 const axiosInstance = axios.create();
-axiosInstance.interceptors.response.use(tmp => {
+axiosInstance.interceptors.response.use((tmp) => {
   const result = {
-    "result": tmp.data.result
-  }
+    result: tmp.data.result
+  };
 
   return result;
-})
+});
 
 const containerStyle = {
   height: "100%",
@@ -47,7 +47,6 @@ const MapWidget = () => {
     axiosInstance
       .get(`${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=`)
       .then((response) => {
- 
         setShops(response.result);
         setIsShopListLoaded(true);
       });

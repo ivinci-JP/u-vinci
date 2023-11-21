@@ -1,0 +1,25 @@
+{
+  "name": "u-vinci_draft",
+  "version": "1.0.0",
+  "description": "この資料は、株式会社 i-Vinci において研修課題として作成されたものを MIT ライセンスの元に公開するものです。",
+  "main": "index.js",
+  "package": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivinci-JP/u-vinci_draft.git"
+  },
+  "scripts": {
+    "startuVinci": "npx -w uVinci/api npm run startMockServer && npx -w uVinci/front/spa npm run startReact"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivinci-JP/u-vinci_draft/issues"
+  },
+  "homepage": "https://github.com/ivinci-JP/u-vinci_draft#readme",
+  "workspaces": [
+    "u-vinci_draft",
+    "uVinci/front/spa",
+    "uVinci/api"
+  ]
+}
