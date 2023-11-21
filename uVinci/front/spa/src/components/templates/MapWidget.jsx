@@ -1,8 +1,8 @@
 // lib
-import axios from "axios";
 import { memo, useCallback, useEffect, useState } from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { CircularProgress } from "@material-ui/core";
+import  axiosInstance  from "../../client/index.mjs";
 
 // consts
 import CONSTS from "../../constants/consts";
@@ -11,14 +11,7 @@ import CONSTS from "../../constants/consts";
 import ShopMarkers from "../molecules/ShopMarkers";
 import ShopDetail from "../organisms/ShopDetail";
 
-const axiosInstance = axios.create();
-axiosInstance.interceptors.response.use((tmp) => {
-  const result = {
-    result: tmp.data.result
-  };
 
-  return result;
-});
 
 const containerStyle = {
   height: "100%",
@@ -44,7 +37,7 @@ const MapWidget = () => {
   }, []);
 
   useEffect(() => {
-    axiosInstance
+    axiosInstance()
       .get(`${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=`)
       .then((response) => {
         setShops(response.result);
