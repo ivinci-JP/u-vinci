@@ -26,20 +26,17 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const [shopTagline, setShopTagline] = useState();
 
   useEffect(() => {
-
     const getShopDetails = async () => {
-    const response = await request.getShopDetails(
-                            detailedShopId
-                          );
+      const response = await request.getShopDetails(detailedShopId);
 
-    const { name, comentoes, access, catch: tagline, url } = response.result;
+      const { name, comentoes, access, catch: tagline, url } = response.result;
 
       setLatestComentoes(comentoes);
       setShopName(name);
       setShopAccess(access);
       setShopUrl(url);
       setShopTagline(tagline);
-    }
+    };
 
     getShopDetails();
   }, [detailedShopId]);

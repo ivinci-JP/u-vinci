@@ -1,4 +1,5 @@
 import axios from "axios";
+import CONSTS from "../constants/consts";
 
 const axiosInstance = () => {
   const tmpAxiosInstance = axios.create();
@@ -16,4 +17,16 @@ const axiosInstance = () => {
   return tmpAxiosInstance;
 };
 
-export default axiosInstance;
+const requestShopList = () => 
+     axiosInstance().get(
+    `${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=`
+  );
+
+const requestShopDetails = (detailedShopId) => 
+      axiosInstance().get(
+        `${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=${
+          detailedShopId ?? ""
+        }`
+      );
+
+export  {requestShopList, requestShopDetails};
