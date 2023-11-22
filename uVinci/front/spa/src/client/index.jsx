@@ -16,6 +16,7 @@ const axiosInstance = () => {
   return tmpAxiosInstance;
 };
 
-const get = (path, pathParam, queryParam) => axiosInstance().get(`${path}/${pathParam}/${queryParam}`);
+const get = (path, pathParam, queryParam) =>
+  axiosInstance().get(`${path}/${pathParam}/${queryParam}`);
 
 export default get;

@@ -8,8 +8,8 @@ const getShopList = () => {
 };
 
 const getShopDetails = (detailedShopId) => {
-  
-  const response = get(CONSTS.MOCK_API_HOSTNAME, CONSTS.RESTAURANTS_PATHNAME, CONSTS.DETAILEDSHOP_QUERYPARAMNAME + detailedShopId);
+  const detailedShopQueryParam = CONSTS.DETAILEDSHOP_QUERYPARAMNAME + detailedShopId
+  const response = get(CONSTS.MOCK_API_HOSTNAME, CONSTS.RESTAURANTS_PATHNAME, detailedShopQueryParam);
 
   return response;
 };
