@@ -17,16 +17,16 @@ const axiosInstance = () => {
   return tmpAxiosInstance;
 };
 
-const requestShopList = () => 
-     axiosInstance().get(
+const requestShopList = () =>
+  axiosInstance().get(
     `${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=`
   );
 
-const requestShopDetails = (detailedShopId) => 
-      axiosInstance().get(
-        `${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=${
-          detailedShopId ?? ""
-        }`
-      );
+const requestShopDetails = (detailedShopId) =>
+  axiosInstance().get(
+    `${CONSTS.MOCK_API_HOSTNAME}/${CONSTS.RESTAURANTS_PATHNAME}?id=${
+      detailedShopId ?? ""
+    }`
+  );
 
-export  {requestShopList, requestShopDetails};
+export { requestShopList, requestShopDetails };

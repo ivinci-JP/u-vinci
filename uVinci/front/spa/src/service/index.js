@@ -1,10 +1,9 @@
-import  {requestShopList, requestShopDetails}  from "../client/index.mjs";
-
+import { requestShopList, requestShopDetails } from "../client/index.mjs";
 
 const getShopList = () => {
-  const shopList = requestShopList();
+  const response = requestShopList();
 
-  return shopList;
+  return response;
 };
 
 const getShopDetails = (detailedShopId) => {
