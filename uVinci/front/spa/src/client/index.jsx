@@ -16,11 +16,13 @@ const axiosInstance = () => {
 
   return client;
 };
- 
-const get = ({path, queryParam}) => {
+
+const get = ({ path, queryParam }) => {
   const baseUrl = `${CONSTS.MOCK_API_HOSTNAME}/${path}`;
-  const requestUrl = queryParam ? `${baseUrl}?${queryParam.key}=${queryParam.value}` : baseUrl
-  
+  const requestUrl = queryParam
+    ? `${baseUrl}?${queryParam.key}=${queryParam.value}`
+    : baseUrl;
+
   return axiosInstance().get(requestUrl);
-}
+};
 export default get;
