@@ -10,7 +10,7 @@ const CONSTS = {
   MOCK_API_HOSTNAME: "http://localhost:4000",
   RESTAURANTS_PATHNAME: "restaurants",
   LIKE_PATHNAME: "like",
-  DETAILEDSHOP_QUERYPARAMNAME: "?id="
+  DETAILEDSHOP_QUERYPARAMNAME: "id"
 };
 
 export default CONSTS;
