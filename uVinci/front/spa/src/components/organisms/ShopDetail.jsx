@@ -1,7 +1,7 @@
 // lib
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { Box, Divider, Drawer, Link, Typography } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 // consts
 import CONSTS from "../../constants/consts";
@@ -13,6 +13,9 @@ import ComentoesList from "../molecules/ComentoesList";
 import uVinciAPIStub from "../../stub/uVinciAPIStub";
 import authStub from "../../stub/authStub";
 
+// service
+import request from "../../service/index";
+
 const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const anchor = "right";
 
@@ -23,27 +26,25 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const [shopTagline, setShopTagline] = useState();
 
   useEffect(() => {
-    const {
-      result: { name, access, url, comentoes, catch: tagline } = {},
-      status,
-    } = uVinciAPIStub.get(
-      `${process.env.REACT_APP_API_HOSTNAME}/${
-        CONSTS.RESTAURANTS_PATHNAME
-      }/${detailedShopId ?? ""}`
-    );
-    setLatestComentoes(comentoes);
-    setShopName(name);
-    setShopAccess(access);
-    setShopUrl(url);
-    setShopTagline(tagline);
+    const getShopDetails = async () => {
+      const response = await request.getShopDetails(detailedShopId);
 
-    console.log({ status });
+      const { name, comentoes, access, catch: tagline, url } = response.result;
+
+      setLatestComentoes(comentoes);
+      setShopName(name);
+      setShopAccess(access);
+      setShopUrl(url);
+      setShopTagline(tagline);
+    };
+
+    getShopDetails();
   }, [detailedShopId]);
 
   const handleLike = () => {
     const option = {
       header: { token: authStub.getToken() },
-      body: { user: authStub.getUser() },
+      body: { user: authStub.getUser() }
     };
 
     const { result: { comentoes: updatedComentoes } = {} } = uVinciAPIStub.post(
@@ -87,11 +88,11 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
 
 ShopDetail.propTypes = {
   detailedShopId: PropTypes.string,
-  setDetailedShopId: PropTypes.func.isRequired,
+  setDetailedShopId: PropTypes.func.isRequired
 };
 
 ShopDetail.defaultProps = {
-  detailedShopId: null,
+  detailedShopId: null
 };
 
 export default ShopDetail;

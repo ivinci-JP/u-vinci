@@ -4,31 +4,31 @@ import statusCodes from "../constants/statusCodes.mjs";
 const dataNotFound = {
   result: [],
   message: messages.NO_CONTENT,
-  status: statusCodes.NO_CONTENT,
+  status: statusCodes.NO_CONTENT
 };
 
 const badRequest = {
   result: {},
   message: messages.BAD_REQUEST,
-  status: statusCodes.BAD_REQUEST,
+  status: statusCodes.BAD_REQUEST
 };
 
 const requestTimeout = {
   result: {},
   message: messages.REQUEST_TIMEOUT,
-  status: statusCodes.REQUEST_TIMEOUT,
+  status: statusCodes.REQUEST_TIMEOUT
 };
 
 const internalServerError = {
   result: {},
   message: messages.INTERNAL_SERVER_ERROR,
-  status: statusCodes.INTERNAL_SERVER_ERROR,
+  status: statusCodes.INTERNAL_SERVER_ERROR
 };
 
 const fakeInternalServerError = {
   id: "iVinciSince2012",
   lat: 35.692973,
-  lng: 139.761738,
+  lng: 139.761738
 };
 
 const getStub = (functionName, id) => {
@@ -48,7 +48,7 @@ const getStub = (functionName, id) => {
       return {
         result: detailedInformation,
         messages: messages.OK,
-        status: statusCodes.OK,
+        status: statusCodes.OK
       };
     } catch {
       return dataNotFound;
@@ -62,7 +62,7 @@ const getStub = (functionName, id) => {
     return {
       result: [...listForTheFunction, fakeInternalServerError],
       messages: messages.OK,
-      status: statusCodes.OK,
+      status: statusCodes.OK
     };
   } catch {
     return dataNotFound;
@@ -81,13 +81,13 @@ const postStub = ({ functionName, id, options, user, like }) => {
         : detailedInformation.comentoes;
       const result = {
         ...detailedInformation,
-        comentoes: newComentoes,
+        comentoes: newComentoes
       };
 
       return {
         result,
         messages: messages.OK,
-        status: statusCodes.OK,
+        status: statusCodes.OK
       };
     } catch {
       return internalServerError;
@@ -114,7 +114,7 @@ const post = (urlString, option) => {
   try {
     const {
       header: { token },
-      body: { user, like = true },
+      body: { user, like = true }
     } = option;
 
     if (token == null || user == null) {
@@ -132,7 +132,7 @@ const post = (urlString, option) => {
 
 const uVinciAPIStub = {
   get,
-  post,
+  post
 };
 
 export default uVinciAPIStub;

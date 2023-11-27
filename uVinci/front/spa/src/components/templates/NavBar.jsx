@@ -10,8 +10,8 @@ import UVinci from "../../assets/UVinci.svg";
 const useStyles = makeStyles(() => ({
   logo: {
     maxWidth: 40,
-    marginRight: 10,
-  },
+    marginRight: 10
+  }
 }));
 
 const NavBar = () => {

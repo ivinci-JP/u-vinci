@@ -1,12 +1,13 @@
 {
-  "name": "react",
+  "name": "mockserver",
   "version": "1.0.0",
   "license": "MIT",
   "private": false,
   "description": "Map application for job training including bugs on purpose.",
   "scripts": {
-    "start": "react-scripts start",
-    "startReact": "PORT=3001 npm start"
+    "startExpress": "node mock/uVinciAPIMock.mjs &",
+    "startJsonServer": "npx json-server --watch db.json -p 3000 &",
+    "startMockServer": "npm-run-all -p startExpress startJsonServer"
   },
   "browserslist": {
     "production": [
@@ -21,20 +22,10 @@
     ]
   },
   "dependencies": {
-    "@material-ui/core": "4.11.4",
-    "@material-ui/icons": "4.11.2",
-    "@react-google-maps/api": "2.2.0",
-    "@testing-library/jest-dom": "5.13.0",
-    "@testing-library/react": "11.2.7",
-    "@testing-library/user-event": "12.8.3",
-    "axios": "^1.6.1",
-    "cors": "^2.8.5",
     "express": "^4.18.2",
     "json-server": "^0.17.4",
-    "prop-types": "15.7.2",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-scripts": "4.0.3"
+    "axios": "^1.6.1",
+    "cors": "^2.8.5"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.26.1",
@@ -56,9 +47,9 @@
     "*.{js,css,md}": "prettier --write"
   },
   "workspaces": [
-    "spa"
+    "api"
   ],
-  "main": ".eslintrc.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ivinci-JP/u-vinci_draft.git"

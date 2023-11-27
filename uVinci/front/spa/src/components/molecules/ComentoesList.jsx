@@ -26,10 +26,10 @@ ComentoesList.propTypes = {
   comentoes: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired
     })
   ).isRequired,
-  handleLike: PropTypes.func.isRequired,
+  handleLike: PropTypes.func.isRequired
 };
 
 export default ComentoesList;

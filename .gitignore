@@ -1,1 +1,4 @@
 .DS_Store
+
+/uVinci/api/node_modules
+/node_modules

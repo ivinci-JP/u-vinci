@@ -7,8 +7,8 @@ import UVinci from "../../assets/UVinci.svg";
 
 const useStyles = makeStyles(() => ({
   logo: {
-    marginRight: 10,
-  },
+    marginRight: 10
+  }
 }));
 
 const LikeButton = ({ handleLike }) => {
@@ -36,7 +36,7 @@ const LikeButton = ({ handleLike }) => {
 };
 
 LikeButton.propTypes = {
-  handleLike: PropTypes.func.isRequired,
+  handleLike: PropTypes.func.isRequired
 };
 
 export default LikeButton;
