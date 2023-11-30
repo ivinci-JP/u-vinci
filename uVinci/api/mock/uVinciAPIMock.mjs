@@ -8,6 +8,7 @@ import statusCodes from "../constants/statusCodes.mjs";
 const app = express();
 const port = 4000;
 app.use(cors());
+app.use(express.json());
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
@@ -61,9 +62,9 @@ app.get("/restaurants", (req, res) => {
 
     try {
       axios
-        .get(`http://localhost:3000/restaurants?shopId=${id}`)
+        .get(`http://localhost:3000/restaurants/${id}`)
         .then((contents) => {
-          const result = contents.data[0];
+          const result = contents.data;
 
           res.send({
             result,
@@ -91,3 +92,66 @@ app.get("/restaurants", (req, res) => {
     res.send(dataNotFound);
   }
 });
+
+const postMock = ({ functionName, id, option, authenticationUser, like }) => {
+  
+  if (option === "like") {
+    try {
+      const filePath = `http://localhost:3000/${functionName}/${id}`;
+      // eslint-disable-next-line import/no-dynamic-require, global-require
+       const content = axios.get(filePath)
+          .then((contents) => {
+            let result = contents.data;
+            const enableLike = !result.comentoes.some((user) => JSON.stringify(user) === JSON.stringify(authenticationUser));
+            if(like && enableLike){
+              result.comentoes.push(authenticationUser)
+            }
+
+            return result;
+          }).then((content) => axios.put(filePath, content)).then((contents) => {
+            const result = contents.data;
+            return {
+              result: result,
+              messages: messages.OK,
+              status: statusCodes.OK,
+            };
+          })       
+
+      return content;
+       
+    } catch {
+      return internalServerError;
+    }
+  }
+
+  return badRequest;
+};
+
+
+app.post("/restaurants/:detailedShopId/like",async function(req, res){
+  
+  try {
+    const detailedShopId = req.params.detailedShopId;
+    const authenticationUser = req.body.user;
+    const authenticationToken = req.headers.token;
+    const like = true;
+    const path = req.url;
+      
+    if (authenticationToken == null || authenticationUser == null) {
+      throw new Error("bad request!");
+    }
+
+    const [functionName, id, option] = getParams(path);
+    const mockResponse = await  postMock({ functionName, id, option, authenticationUser, like });
+
+    res.send(mockResponse);
+  } catch {
+    res.send(badRequest);
+  }
+})
+
+const getParams = (path) => {
+  const result = path.split("/");
+  result.shift();
+  return result;
+};

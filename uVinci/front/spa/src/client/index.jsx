@@ -25,4 +25,10 @@ const get = ({ path, queryParam }) => {
 
   return axiosInstance().get(requestUrl);
 };
-export default get;
+
+const post = ({ path, pathParam, like, data}) => {
+  const requestUrl = `${CONSTS.MOCK_API_HOSTNAME}/${path}/${pathParam}/${like}`;
+
+  return axiosInstance().post(requestUrl, data.body, {headers: {"token": data.headers.token}});
+}
+export { get, post };

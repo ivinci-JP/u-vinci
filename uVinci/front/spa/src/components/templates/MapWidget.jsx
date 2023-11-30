@@ -1,7 +1,8 @@
 // lib
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState} from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { CircularProgress } from "@material-ui/core";
+import { useCookies } from 'react-cookie';
 
 // consts
 import CONSTS from "../../constants/consts";
@@ -12,6 +13,7 @@ import ShopDetail from "../organisms/ShopDetail";
 
 // service
 import request from "../../service/index";
+import authStub from "../../stub/authStub";
 
 const containerStyle = {
   height: "100%",
@@ -23,14 +25,22 @@ const MapWidget = () => {
   const [mapView, setMapView] = useState(null);
   const [isShopListLoaded, setIsShopListLoaded] = useState(false);
   const [shops, setShops] = useState();
+  const [cookies, setCookie] = useCookies(['authentication']);
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
   });
+
+  useEffect(() => {
+    setCookie('user', `{"id": "${authStub.getUser().id}", "name": "${authStub.getUser().name}"}`,{path : '/'});
+    setCookie('token', authStub.getToken(),{path : '/'}) ;
+
+  },[cookies, setCookie])
+
   const onLoad = useCallback((initiatedMap) => {
     setMapView(initiatedMap);
-  }, []);
+   }, []);
 
   const onUnmount = useCallback(() => {
     setMapView(null);
