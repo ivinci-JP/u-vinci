@@ -61,15 +61,17 @@ app.get("/restaurants", (req, res) => {
     }
 
     try {
-      axios.get(`http://localhost:3000/restaurants/${id}`).then((contents) => {
-        const result = contents.data;
+      axios
+        .get(`http://localhost:3000/restaurants/${id}`)
+        .then((contents) => {
+          const result = contents.data;
 
-        res.send({
-          result,
-          messages: messages.OK,
-          status: statusCodes.OK,
+          res.send({
+            result,
+            messages: messages.OK,
+            status: statusCodes.OK,
+          });
         });
-      });
 
       return;
     } catch {
@@ -92,35 +94,31 @@ app.get("/restaurants", (req, res) => {
 });
 
 const postMock = ({ functionName, id, option, authenticationUser, like }) => {
+  
   if (option === "like") {
     try {
       const filePath = `http://localhost:3000/${functionName}/${id}`;
       // eslint-disable-next-line import/no-dynamic-require, global-require
-      const content = axios
-        .get(filePath)
-        .then((contents) => {
-          let result = contents.data;
-          const enableLike = !result.comentoes.some(
-            (user) =>
-              JSON.stringify(user) === JSON.stringify(authenticationUser)
-          );
-          if (like && enableLike) {
-            result.comentoes.push(authenticationUser);
-          }
+       const content = axios.get(filePath)
+          .then((contents) => {
+            const result = contents.data;
+            const enableLike = !result.comentoes.some((user) => JSON.stringify(user) === JSON.stringify(authenticationUser));
+            if(like && enableLike){
+              result.comentoes.push(authenticationUser)
+            }
 
-          return result;
-        })
-        .then((content) => axios.put(filePath, content))
-        .then((contents) => {
-          const result = contents.data;
-          return {
-            result: result,
-            messages: messages.OK,
-            status: statusCodes.OK,
-          };
-        });
+            return result;
+          }).then((content) => axios.put(filePath, content)).then((contents) => {
+            const result = contents.data;
+            return {
+              result: result,
+              messages: messages.OK,
+              status: statusCodes.OK,
+            };
+          })       
 
       return content;
+       
     } catch {
       return internalServerError;
     }
@@ -129,32 +127,27 @@ const postMock = ({ functionName, id, option, authenticationUser, like }) => {
   return badRequest;
 };
 
-app.post("/restaurants/:detailedShopId/like", async function (req, res) {
+
+app.post("/restaurants/:detailedShopId/like",async function(req, res){
+  
   try {
-    const detailedShopId = req.params.detailedShopId;
     const authenticationUser = req.body.user;
     const authenticationToken = req.headers.token;
     const like = true;
     const path = req.url;
-
+      
     if (authenticationToken == null || authenticationUser == null) {
       throw new Error("bad request!");
     }
 
     const [functionName, id, option] = getParams(path);
-    const mockResponse = await postMock({
-      functionName,
-      id,
-      option,
-      authenticationUser,
-      like,
-    });
+    const mockResponse = await  postMock({ functionName, id, option, authenticationUser, like });
 
     res.send(mockResponse);
   } catch {
     res.send(badRequest);
   }
-});
+})
 
 const getParams = (path) => {
   const result = path.split("/");
