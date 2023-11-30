@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Box, Divider, Drawer, Link, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 
 // consts
 import CONSTS from "../../constants/consts";
@@ -39,10 +39,10 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
     getShopDetails();
   }, [detailedShopId, setLatestComentoes]);
 
-  const handleLike =async () => {
+  const handleLike = async () => {
     const option = {
       headers: { token: cookies.token },
-      body: { user: cookies.user}
+      body: { user: cookies.user }
     };
 
     const response = await request.becomeComento(

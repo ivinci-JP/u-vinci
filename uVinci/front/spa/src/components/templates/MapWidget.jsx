@@ -1,8 +1,8 @@
 // lib
-import { memo, useCallback, useEffect, useState} from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { CircularProgress } from "@material-ui/core";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 
 // consts
 import CONSTS from "../../constants/consts";
@@ -25,7 +25,7 @@ const MapWidget = () => {
   const [mapView, setMapView] = useState(null);
   const [isShopListLoaded, setIsShopListLoaded] = useState(false);
   const [shops, setShops] = useState();
-  const [cookies, setCookie] = useCookies(['authentication']);
+  const [cookies, setCookie] = useCookies(["authentication"]);
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -33,14 +33,19 @@ const MapWidget = () => {
   });
 
   useEffect(() => {
-    setCookie('user', `{"id": "${authStub.getUser().id}", "name": "${authStub.getUser().name}"}`,{path : '/'});
-    setCookie('token', authStub.getToken(),{path : '/'}) ;
-
-  },[cookies, setCookie])
+    setCookie(
+      "user",
+      `{"id": "${authStub.getUser().id}", "name": "${
+        authStub.getUser().name
+      }"}`,
+      { path: "/" }
+    );
+    setCookie("token", authStub.getToken(), { path: "/" });
+  }, [cookies, setCookie]);
 
   const onLoad = useCallback((initiatedMap) => {
     setMapView(initiatedMap);
-   }, []);
+  }, []);
 
   const onUnmount = useCallback(() => {
     setMapView(null);
