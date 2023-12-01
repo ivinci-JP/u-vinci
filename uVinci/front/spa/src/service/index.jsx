@@ -1,4 +1,4 @@
-import { get, post } from "../client/index";
+import { get, put } from "../client/index";
 import CONSTS from "../constants/consts";
 
 const getShopList = () => {
@@ -22,7 +22,7 @@ const getShopDetails = (detailedShopId) => {
 };
 
 const becomeComento = (detailedShopId, like, data) => {
-  const response = post({
+  const response = put({
     path: CONSTS.RESTAURANTS_PATHNAME,
     pathParam: detailedShopId,
     like,

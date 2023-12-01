@@ -69,7 +69,7 @@ const getStub = (functionName, id) => {
   }
 };
 
-const postStub = ({ functionName, id, options, user, like }) => {
+const putStub = ({ functionName, id, options, user, like }) => {
   if (options[0] === "like") {
     try {
       const filePath = `./${functionName}/${id}.json`;
@@ -110,7 +110,7 @@ const get = (urlString) => {
   return stubResponse;
 };
 
-const post = (urlString, option) => {
+const put = (urlString, option) => {
   try {
     const {
       header: { token },
@@ -122,7 +122,7 @@ const post = (urlString, option) => {
     }
 
     const [functionName, id, ...options] = getParams(urlString);
-    const stubResponse = postStub({ functionName, id, options, user, like });
+    const stubResponse = putStub({ functionName, id, options, user, like });
 
     return stubResponse;
   } catch {
@@ -132,7 +132,7 @@ const post = (urlString, option) => {
 
 const uVinciAPIStub = {
   get,
-  post
+  put
 };
 
 export default uVinciAPIStub;
