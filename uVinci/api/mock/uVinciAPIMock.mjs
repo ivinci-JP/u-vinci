@@ -91,40 +91,40 @@ app.get("/restaurants", (req, res) => {
   }
 });
 
-const putMock = ({ functionName, id, authenticationUser, like }) => {
-  if (!like) {return badRequest;}
-    try {
-      const filePath = `http://localhost:3000/${functionName}/${id}`;
-      // eslint-disable-next-line import/no-dynamic-require, global-require
-      const content = axios
-        .get(filePath)
-        .then((contents) => {
-          const result = contents.data;
-          const enableLike = !result.comentoes.some(
-            (user) =>
-              JSON.stringify(user) === JSON.stringify(authenticationUser)
-          );
-          if (like && enableLike) {
-            result.comentoes.push(authenticationUser);
-          }
+const putComentoesMock = ({ functionName, id, authenticationUser, like }) => {
+  if (!like) {
+    return badRequest;
+  }
+  try {
+    const filePath = `http://localhost:3000/${functionName}/${id}`;
+    // eslint-disable-next-line import/no-dynamic-require, global-require
+    const content = axios
+      .get(filePath)
+      .then((contents) => {
+        const result = contents.data;
+        const enableLike = !result.comentoes.some(
+          (user) => JSON.stringify(user) === JSON.stringify(authenticationUser)
+        );
+        if (like && enableLike) {
+          result.comentoes.push(authenticationUser);
+        }
 
-          return result;
-        })
-        .then((content) => axios.put(filePath, content))
-        .then((contents) => {
-          const result = contents.data;
-          return {
-            result: result,
-            messages: messages.OK,
-            status: statusCodes.OK,
-          };
-        });
+        return result;
+      })
+      .then((content) => axios.put(filePath, content))
+      .then((contents) => {
+        const result = contents.data;
+        return {
+          result: result,
+          messages: messages.OK,
+          status: statusCodes.OK,
+        };
+      });
 
-      return content;
-    } catch {
-      return internalServerError;
-    }
-  
+    return content;
+  } catch {
+    return internalServerError;
+  }
 };
 
 app.put("/restaurants/:detailedShopId/like", async function (req, res) {
@@ -138,8 +138,8 @@ app.put("/restaurants/:detailedShopId/like", async function (req, res) {
       throw new Error("bad request!");
     }
 
-    const [functionName, id, option] = getParams(path);
-    const mockResponse = await putMock({
+    const [functionName, id] = getParams(path);
+    const mockResponse = await putComentoesMock({
       functionName,
       id,
       authenticationUser,
