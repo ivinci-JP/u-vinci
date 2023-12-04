@@ -91,30 +91,37 @@ app.get("/restaurants", (req, res) => {
   }
 });
 
-const getShopDetails = (filePath) => axios.get(filePath).then((contents) => {
-  const result = contents.data;
-  return result;
-})
+const getShopDetails = (filePath) =>
+  axios.get(filePath).then((contents) => {
+    const result = contents.data;
+    return result;
+  });
 
-const isEnableLike = (shopDetails, authenticationUser) => !shopDetails.comentoes.some(
-  (user) => JSON.stringify(user) === JSON.stringify(authenticationUser)
-);
+const isEnableLike = (shopDetails, authenticationUser) =>
+  !shopDetails.comentoes.some(
+    (user) => JSON.stringify(user) === JSON.stringify(authenticationUser)
+  );
 
-const addComentoes =  (shopDetails, authenticationUser) => {
+const addComentoes = (shopDetails, authenticationUser) => {
   shopDetails.comentoes.push(authenticationUser);
-}
+};
 
-const updateComentoes = (filePath, shopDetails) => axios.put(filePath, shopDetails)
-.then((contents) => {
-  const result = contents.data;
-  return {
-    result: result,
-    messages: messages.OK,
-    status: statusCodes.OK,
-  };
-});
+const updateComentoes = (filePath, shopDetails) =>
+  axios.put(filePath, shopDetails).then((contents) => {
+    const result = contents.data;
+    return {
+      result: result,
+      messages: messages.OK,
+      status: statusCodes.OK,
+    };
+  });
 
-const putComentoesMock =  async ({ functionName, id, authenticationUser, like }) => {
+const putComentoesMock = async ({
+  functionName,
+  id,
+  authenticationUser,
+  like,
+}) => {
   if (!like) {
     return badRequest;
   }
@@ -122,12 +129,12 @@ const putComentoesMock =  async ({ functionName, id, authenticationUser, like })
     const filePath = `http://localhost:3000/${functionName}/${id}`;
     // eslint-disable-next-line import/no-dynamic-require, global-require
 
-      const shopDetails = await getShopDetails(filePath);
+    const shopDetails = await getShopDetails(filePath);
 
-      const enableLike = isEnableLike(shopDetails, authenticationUser);
-      if (like && enableLike) {
-        addComentoes(shopDetails, authenticationUser)
-      }
+    const enableLike = isEnableLike(shopDetails, authenticationUser);
+    if (like && enableLike) {
+      addComentoes(shopDetails, authenticationUser);
+    }
 
     return await updateComentoes(filePath, shopDetails);
   } catch {

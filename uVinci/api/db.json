@@ -100,7 +100,12 @@
       "access": "パレスサイドオフィス神保町から徒歩2ふん",
       "catch": "炭火で炙った焼き鳥がうまいうまい",
       "url": "https://www.i-vinci.co.jp/",
-      "comentoes": []
+      "comentoes": [
+        {
+          "id": "U88888",
+          "name": "シンニュー・シャイン"
+        }
+      ]
     },
     {
       "id": "SHOP07",

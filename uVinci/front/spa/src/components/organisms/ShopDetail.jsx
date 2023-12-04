@@ -45,7 +45,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
       body: { user: cookies.user }
     };
 
-    const response = await request.becomeComento(
+    const response = await request.addComento(
       detailedShopId,
       CONSTS.LIKE_PATHNAME,
       option

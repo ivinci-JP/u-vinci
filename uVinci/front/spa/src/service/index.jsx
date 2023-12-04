@@ -21,7 +21,7 @@ const getShopDetails = (detailedShopId) => {
   return response;
 };
 
-const becomeComento = (detailedShopId, like, data) => {
+const addComento = (detailedShopId, like, data) => {
   const response = put({
     path: CONSTS.RESTAURANTS_PATHNAME,
     pathParam: detailedShopId,
@@ -32,4 +32,4 @@ const becomeComento = (detailedShopId, like, data) => {
   return response;
 };
 
-export default { getShopDetails, getShopList, becomeComento };
+export default { getShopDetails, getShopList, addComento };
