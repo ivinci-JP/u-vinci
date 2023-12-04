@@ -91,7 +91,7 @@ app.get("/restaurants", (req, res) => {
   }
 });
 
-const postMock = ({ functionName, id, option, authenticationUser, like }) => {
+const putMock = ({ functionName, id, option, authenticationUser, like }) => {
   if (option === "like") {
     try {
       const filePath = `http://localhost:3000/${functionName}/${id}`;
@@ -141,7 +141,7 @@ app.put("/restaurants/:detailedShopId/like", async function (req, res) {
     }
 
     const [functionName, id, option] = getParams(path);
-    const mockResponse = await postMock({
+    const mockResponse = await putMock({
       functionName,
       id,
       option,
