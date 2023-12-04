@@ -25,8 +25,8 @@ const MapWidget = () => {
   const [mapView, setMapView] = useState(null);
   const [isShopListLoaded, setIsShopListLoaded] = useState(false);
   const [shops, setShops] = useState();
-   // eslint-disable-next-line
-  const [cookies, setCookie] = useCookies(["authentication"]);
+  // eslint-disable-next-line
+  const [cookies, setCookies] = useCookies(["authentication"]);
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -34,16 +34,16 @@ const MapWidget = () => {
   });
 
   useEffect(() => {
-    setCookie(
+    setCookies(
       "user",
       `{"id": "${authStub.getUser().id}", "name": "${
         authStub.getUser().name
       }"}`,
       { path: "/" }
     );
-    setCookie("token", authStub.getToken(), { path: "/" });
+    setCookies("token", authStub.getToken(), { path: "/" });
     // eslint-disable-next-line
-  },[]);
+  }, []);
 
   const onLoad = useCallback((initiatedMap) => {
     setMapView(initiatedMap);
