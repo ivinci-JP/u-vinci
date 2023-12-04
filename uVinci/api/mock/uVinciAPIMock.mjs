@@ -91,8 +91,8 @@ app.get("/restaurants", (req, res) => {
   }
 });
 
-const putMock = ({ functionName, id, option, authenticationUser, like }) => {
-  if (option === "like") {
+const putMock = ({ functionName, id, authenticationUser, like }) => {
+  if (!like) {return badRequest;}
     try {
       const filePath = `http://localhost:3000/${functionName}/${id}`;
       // eslint-disable-next-line import/no-dynamic-require, global-require
@@ -124,9 +124,7 @@ const putMock = ({ functionName, id, option, authenticationUser, like }) => {
     } catch {
       return internalServerError;
     }
-  }
-
-  return badRequest;
+  
 };
 
 app.put("/restaurants/:detailedShopId/like", async function (req, res) {
@@ -144,7 +142,6 @@ app.put("/restaurants/:detailedShopId/like", async function (req, res) {
     const mockResponse = await putMock({
       functionName,
       id,
-      option,
       authenticationUser,
       like,
     });
