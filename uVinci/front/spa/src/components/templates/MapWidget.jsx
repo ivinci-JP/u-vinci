@@ -25,6 +25,7 @@ const MapWidget = () => {
   const [mapView, setMapView] = useState(null);
   const [isShopListLoaded, setIsShopListLoaded] = useState(false);
   const [shops, setShops] = useState();
+   // eslint-disable-next-line
   const [cookies, setCookie] = useCookies(["authentication"]);
 
   const { isLoaded } = useJsApiLoader({
@@ -41,7 +42,8 @@ const MapWidget = () => {
       { path: "/" }
     );
     setCookie("token", authStub.getToken(), { path: "/" });
-  }, [cookies, setCookie]);
+    // eslint-disable-next-line
+  },[]);
 
   const onLoad = useCallback((initiatedMap) => {
     setMapView(initiatedMap);

@@ -37,7 +37,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
     };
 
     getShopDetails();
-  }, [detailedShopId, latestComentoes]);
+  }, [detailedShopId]);
 
   const handleLike = async () => {
     const option = {
