@@ -2,8 +2,8 @@ import axios from "axios";
 import messages from "../constants/messages.mjs";
 import statusCodes from "../constants/statusCodes.mjs";
 
-const getShopDetails = (filePath) =>
-  axios.get(filePath).then((contents) => {
+const getShopDetails = (requestPath) =>
+  axios.get(requestPath).then((contents) => {
     const result = contents.data;
     return result;
   });
@@ -17,8 +17,8 @@ const addComentoes = (shopDetails, authenticationUser) => {
   shopDetails.comentoes.push(authenticationUser);
 };
 
-const updateComentoes = (filePath, shopDetails) =>
-  axios.put(filePath, shopDetails).then((contents) => {
+const updateComentoes = (requestPath, shopDetails) =>
+  axios.put(requestPath, shopDetails).then((contents) => {
     return {
       result: contents.data,
       messages: messages.OK,
@@ -36,15 +36,15 @@ const putComentoesMock = async ({
     return badRequest;
   }
   try {
-    const filePath = `http://localhost:3000/${functionName}/${id}`;
+    const requestPath = `http://localhost:3000/${functionName}/${id}`;
 
-    const shopDetails = await getShopDetails(filePath);
+    const shopDetails = await getShopDetails(requestPath);
 
     const enableLike = isEnableLike(shopDetails, authenticationUser);
     if (like && enableLike) {
       addComentoes(shopDetails, authenticationUser);
     }
-    const result = await updateComentoes(filePath, shopDetails);
+    const result = await updateComentoes(requestPath, shopDetails);
 
     return result;
   } catch {
