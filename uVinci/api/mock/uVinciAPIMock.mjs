@@ -102,7 +102,7 @@ app.put("/restaurants/:detailedShopId/like", async function (req, res) {
     if (authenticationToken == null || authenticationUser == null) {
       throw new Error("bad request!");
     }
-    console.log(req.params.detailedShopId);
+
     const [functionName, id] = getParams(req);
     const mockResponse = await putComentoesMock({
       functionName,

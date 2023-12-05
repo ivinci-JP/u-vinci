@@ -23,7 +23,7 @@ const MapWidget = () => {
   const [mapView, setMapView] = useState(null);
   const [isShopListLoaded, setIsShopListLoaded] = useState(false);
   const [shops, setShops] = useState();
-  
+
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY

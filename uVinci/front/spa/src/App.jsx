@@ -8,32 +8,29 @@ import MapWidget from "./components/templates/MapWidget";
 
 import authStub from "./stub/authStub";
 
-
 const App = () => {
-  
   const [, setCookies] = useCookies(["authentication"]);
- setCookies(
-      "user",
-      `{"id": "${authStub.getUser().id}", "name": "${
-        authStub.getUser().name
-      }"}`,
-      { path: "/" }
-    );
-    setCookies("token", authStub.getToken(), { path: "/" });
+  setCookies(
+    "user",
+    `{"id": "${authStub.getUser().id}", "name": "${authStub.getUser().name}"}`,
+    { path: "/" }
+  );
+  setCookies("token", authStub.getToken(), { path: "/" });
 
   return (
-  <>
-    <CssBaseline />
-    <Box display="flex" flexDirection="column" style={{ height: "100vh" }}>
-      <Box>
-        <NavBar />
-      </Box>
+    <>
+      <CssBaseline />
+      <Box display="flex" flexDirection="column" style={{ height: "100vh" }}>
+        <Box>
+          <NavBar />
+        </Box>
 
-      <Box flexGrow={1}>
-        <MapWidget />
+        <Box flexGrow={1}>
+          <MapWidget />
+        </Box>
       </Box>
-    </Box>
-  </>
-)};
+    </>
+  );
+};
 
 export default App;
