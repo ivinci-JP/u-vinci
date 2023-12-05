@@ -2,7 +2,6 @@ import axios from "axios";
 import messages from "../constants/messages.mjs";
 import statusCodes from "../constants/statusCodes.mjs";
 
-
 const getShopDetails = (filePath) =>
   axios.get(filePath).then((contents) => {
     const result = contents.data;
@@ -20,7 +19,6 @@ const addComentoes = (shopDetails, authenticationUser) => {
 
 const updateComentoes = (filePath, shopDetails) =>
   axios.put(filePath, shopDetails).then((contents) => {
-    
     return {
       result: contents.data,
       messages: messages.OK,
@@ -34,13 +32,11 @@ const putComentoesMock = async ({
   authenticationUser,
   like,
 }) => {
-
   if (!like) {
     return badRequest;
   }
   try {
     const filePath = `http://localhost:3000/${functionName}/${id}`;
-    // eslint-disable-next-line import/no-dynamic-require, global-require
 
     const shopDetails = await getShopDetails(filePath);
 
@@ -50,9 +46,8 @@ const putComentoesMock = async ({
     }
     const result = await updateComentoes(filePath, shopDetails);
 
-    return  result;
+    return result;
   } catch {
-
     return internalServerError;
   }
 };
