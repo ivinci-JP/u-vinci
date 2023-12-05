@@ -102,8 +102,8 @@ app.put("/restaurants/:detailedShopId/like", async function (req, res) {
     if (authenticationToken == null || authenticationUser == null) {
       throw new Error("bad request!");
     }
-
-    const [functionName, id] = getParams(path);
+console.log(req.params.detailedShopId)
+    const [functionName, id] = getParams(req);
     const mockResponse = await putComentoesMock({
       functionName,
       id,
@@ -117,8 +117,4 @@ app.put("/restaurants/:detailedShopId/like", async function (req, res) {
   }
 });
 
-const getParams = (path) => {
-  const result = path.split("/");
-  result.shift();
-  return result;
-};
+const getParams = (req) => ["restaurants", req.params.detailedShopId];
