@@ -97,7 +97,6 @@ app.put("/restaurants/:detailedShopId/like", async function (req, res) {
     const authenticationUser = req.body.user;
     const authenticationToken = req.headers.token;
     const like = true;
-    const path = req.url;
 
     if (authenticationToken == null || authenticationUser == null) {
       throw new Error("bad request!");
