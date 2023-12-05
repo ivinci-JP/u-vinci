@@ -4,6 +4,7 @@ import cors from "cors";
 import express from "express";
 import messages from "../constants/messages.mjs";
 import statusCodes from "../constants/statusCodes.mjs";
+import putComentoesMock from "../service/index.mjs";
 
 const app = express();
 const port = 4000;
@@ -90,57 +91,6 @@ app.get("/restaurants", (req, res) => {
     res.send(dataNotFound);
   }
 });
-
-const getShopDetails = (filePath) =>
-  axios.get(filePath).then((contents) => {
-    const result = contents.data;
-    return result;
-  });
-
-const isEnableLike = (shopDetails, authenticationUser) =>
-  !shopDetails.comentoes.some(
-    (user) => JSON.stringify(user) === JSON.stringify(authenticationUser)
-  );
-
-const addComentoes = (shopDetails, authenticationUser) => {
-  shopDetails.comentoes.push(authenticationUser);
-};
-
-const updateComentoes = (filePath, shopDetails) =>
-  axios.put(filePath, shopDetails).then((contents) => {
-    const result = contents.data;
-    return {
-      result: result,
-      messages: messages.OK,
-      status: statusCodes.OK,
-    };
-  });
-
-const putComentoesMock = async ({
-  functionName,
-  id,
-  authenticationUser,
-  like,
-}) => {
-  if (!like) {
-    return badRequest;
-  }
-  try {
-    const filePath = `http://localhost:3000/${functionName}/${id}`;
-    // eslint-disable-next-line import/no-dynamic-require, global-require
-
-    const shopDetails = await getShopDetails(filePath);
-
-    const enableLike = isEnableLike(shopDetails, authenticationUser);
-    if (like && enableLike) {
-      addComentoes(shopDetails, authenticationUser);
-    }
-
-    return await updateComentoes(filePath, shopDetails);
-  } catch {
-    return internalServerError;
-  }
-};
 
 app.put("/restaurants/:detailedShopId/like", async function (req, res) {
   try {
