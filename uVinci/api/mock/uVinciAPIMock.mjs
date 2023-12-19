@@ -4,10 +4,12 @@ import cors from "cors";
 import express from "express";
 import messages from "../constants/messages.mjs";
 import statusCodes from "../constants/statusCodes.mjs";
+import putComentoesMock from "./services/getAndPutService.mjs";
 
 const app = express();
 const port = 4000;
 app.use(cors());
+app.use(express.json());
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
@@ -60,17 +62,15 @@ app.get("/restaurants", (req, res) => {
     }
 
     try {
-      axios
-        .get(`http://localhost:3000/restaurants?shopId=${id}`)
-        .then((contents) => {
-          const result = contents.data[0];
+      axios.get(`http://localhost:3000/restaurants/${id}`).then((contents) => {
+        const result = contents.data;
 
-          res.send({
-            result,
-            messages: messages.OK,
-            status: statusCodes.OK,
-          });
+        res.send({
+          result,
+          messages: messages.OK,
+          status: statusCodes.OK,
         });
+      });
 
       return;
     } catch {
@@ -91,3 +91,29 @@ app.get("/restaurants", (req, res) => {
     res.send(dataNotFound);
   }
 });
+
+app.put("/restaurants/:detailedShopId/like", async function (req, res) {
+  try {
+    const authenticationUser = req.body.user;
+    const authenticationToken = req.headers.token;
+    const like = true;
+
+    if (authenticationToken == null || authenticationUser == null) {
+      throw new Error("bad request!");
+    }
+
+    const [functionName, id] = getParams(req);
+    const mockResponse = await putComentoesMock({
+      functionName,
+      id,
+      authenticationUser,
+      like,
+    });
+
+    res.send(mockResponse);
+  } catch {
+    res.send(badRequest);
+  }
+});
+
+const getParams = (req) => ["restaurants", req.params.detailedShopId];

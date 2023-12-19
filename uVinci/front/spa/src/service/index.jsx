@@ -1,4 +1,4 @@
-import get from "../client/index";
+import { get, put } from "../client/index";
 import CONSTS from "../constants/consts";
 
 const getShopList = () => {
@@ -21,4 +21,15 @@ const getShopDetails = (detailedShopId) => {
   return response;
 };
 
-export default { getShopDetails, getShopList };
+const addComento = (detailedShopId, like, data) => {
+  const response = put({
+    path: CONSTS.RESTAURANTS_PATHNAME,
+    pathParam: detailedShopId,
+    like,
+    data
+  });
+
+  return response;
+};
+
+export default { getShopDetails, getShopList, addComento };

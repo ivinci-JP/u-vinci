@@ -9,6 +9,7 @@ const CONSTS = {
   INITIAL_ZOOM: 18,
   MOCK_API_HOSTNAME: "http://localhost:4000",
   RESTAURANTS_PATHNAME: "restaurants",
+  USERS_PATHNAME: "user",
   LIKE_PATHNAME: "like",
 };
 

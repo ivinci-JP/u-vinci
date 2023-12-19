@@ -2,16 +2,13 @@
 import { useEffect, useState } from "react";
 import { Box, Divider, Drawer, Link, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
+import { useCookies } from "react-cookie";
 
 // consts
 import CONSTS from "../../constants/consts";
 
 // components
 import ComentoesList from "../molecules/ComentoesList";
-
-// stub
-import uVinciAPIStub from "../../stub/uVinciAPIStub";
-import authStub from "../../stub/authStub";
 
 // service
 import request from "../../service/index";
@@ -24,6 +21,7 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const [shopAccess, setShopAccess] = useState();
   const [shopUrl, setShopUrl] = useState();
   const [shopTagline, setShopTagline] = useState();
+  const [cookies] = useCookies();
 
   useEffect(() => {
     const getShopDetails = async () => {
@@ -41,20 +39,19 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
     getShopDetails();
   }, [detailedShopId]);
 
-  const handleLike = () => {
+  const handleLike = async () => {
     const option = {
-      header: { token: authStub.getToken() },
-      body: { user: authStub.getUser() }
+      headers: { token: cookies.token },
+      body: { user: cookies.user }
     };
 
-    const { result: { comentoes: updatedComentoes } = {} } = uVinciAPIStub.post(
-      `http://${process.env.REACT_APP_API_HOSTNAME}/${
-        CONSTS.RESTAURANTS_PATHNAME
-      }/${detailedShopId ?? ""}/${CONSTS.LIKE_PATHNAME}`,
+    const response = await request.addComento(
+      detailedShopId,
+      CONSTS.LIKE_PATHNAME,
       option
     );
 
-    setLatestComentoes(updatedComentoes);
+    setLatestComentoes(response.result.comentoes);
   };
 
   return (
