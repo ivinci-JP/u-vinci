@@ -1,6 +1,6 @@
 import axios from "axios";
-import messages from "../constants/messages.mjs";
-import statusCodes from "../constants/statusCodes.mjs";
+import messages from "../../constants/messages.mjs";
+import statusCodes from "../../constants/statusCodes.mjs";
 
 const getShopDetails = (requestPath) =>
   axios.get(requestPath).then((contents) => {

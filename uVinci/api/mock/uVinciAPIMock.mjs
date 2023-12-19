@@ -4,7 +4,7 @@ import cors from "cors";
 import express from "express";
 import messages from "../constants/messages.mjs";
 import statusCodes from "../constants/statusCodes.mjs";
-import putComentoesMock from "../service/index.mjs";
+import putComentoesMock from "./services/getAndPutService.mjs";
 
 const app = express();
 const port = 4000;
