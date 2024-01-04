@@ -42,6 +42,8 @@ u-Vinci はすでにエンドユーザーが使用を開始している状態で
 
 - 「米ん人になる」操作の結果は永続化されているため、ボタンを押すとユーザーがDBのComentoesに追加されます。
 削除方法はcurlコマンドを使用するか、直接、db.json内の該当ユーザーのデータを消す等行ってください。
+削除例：curl -D - -X PUT -H 'token:775167ec-e803-4664-bc9e-229bfd7909ab' -H 'Content-Type:application/json' -d '{"user":{"id":"U88888","name":"シンニュー・シャイン"}}' http://localhost:4000/restaurants/SHOP03/unlike
+
 - Gitコミット時にprettierを動作させる実装をhuskyとlint-stagedで実装しております。
 
 # ご担当の方へ

@@ -10,7 +10,6 @@
 # 使用技術
 
 - express
-- sinon
 
 # 飲食店の紐付け
 
@@ -92,6 +91,10 @@ GET /restaurants/:id
 # 米ん人になる
 
 POST /restaurants/:id/like
+
+# 米ん人をやめる
+
+DELETE /restaurants/:id/unlike
 
 ## リクエスト内容
 
