@@ -3,9 +3,18 @@
 u-Vinci Frontend である。React を用いた SPA で、次のものと連携している。
 
 - GoogleMap API
-- u-Vinci API（現在は stub）
+- u-Vinci API（現在は Express）
+- DB (JSON Server)
 
 ## ローカル起動
+
+起動方法はu-vindi_draftディレクトリにて「npm run startuVinci」で行う。
+アプリケーションはポート3001
+Expressはポート4000
+JsonServerはポート3000
+で、それぞれ起動します。
+詳細はu-vinci_draft内にあるpackage.jsonを参照してください。
+GoogleMapsKeyの設定は不要です。
 
 ### API Key を設定
 
