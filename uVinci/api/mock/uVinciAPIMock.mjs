@@ -116,4 +116,28 @@ app.put("/restaurants/:detailedShopId/like", async function (req, res) {
   }
 });
 
+app.put("/restaurants/:detailedShopId/unlike", async function (req, res) {
+  try {
+    const authenticationUser = req.body.user;
+    const authenticationToken = req.headers.token;
+    const like = false;
+
+    if (authenticationToken == null || authenticationUser == null) {
+      throw new Error("bad request!");
+    }
+
+    const [functionName, id] = getParams(req);
+    const mockResponse = await putComentoesMock({
+      functionName,
+      id,
+      authenticationUser,
+      like,
+    });
+
+    res.send(mockResponse);
+  } catch {
+    res.send(badRequest);
+  }
+});
+
 const getParams = (req) => ["restaurants", req.params.detailedShopId];

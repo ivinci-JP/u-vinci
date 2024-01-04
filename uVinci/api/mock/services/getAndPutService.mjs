@@ -17,6 +17,12 @@ const addComentoes = (shopDetails, authenticationUser) => {
   shopDetails.comentoes.push(authenticationUser);
 };
 
+const excludeComentoes = (shopDetails, authenticationUser) => {
+  shopDetails.comentoes = shopDetails.comentoes.filter(
+    (user) => JSON.stringify(user) !== JSON.stringify(authenticationUser)
+  );
+};
+
 const updateComentoes = (requestPath, shopDetails) =>
   axios.put(requestPath, shopDetails).then((contents) => {
     return {
@@ -32,20 +38,19 @@ const putComentoesMock = async ({
   authenticationUser,
   like,
 }) => {
-  if (!like) {
-    return badRequest;
-  }
   try {
     const requestPath = `http://localhost:3000/${functionName}/${id}`;
-
     const shopDetails = await getShopDetails(requestPath);
-
     const enableLike = isEnableLike(shopDetails, authenticationUser);
     if (like && enableLike) {
       addComentoes(shopDetails, authenticationUser);
     }
-    const result = await updateComentoes(requestPath, shopDetails);
 
+    if (!like && !enableLike) {
+      excludeComentoes(shopDetails, authenticationUser);
+    }
+
+    const result = await updateComentoes(requestPath, shopDetails);
     return result;
   } catch {
     return internalServerError;
