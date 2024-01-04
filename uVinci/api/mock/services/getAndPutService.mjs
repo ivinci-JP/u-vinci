@@ -42,14 +42,13 @@ const putComentoesMock = async ({
     const requestPath = `http://localhost:3000/${functionName}/${id}`;
     const shopDetails = await getShopDetails(requestPath);
     const enableLike = isEnableLike(shopDetails, authenticationUser);
-    if (like&& enableLike) {
-        addComentoes(shopDetails, authenticationUser);
-      }
+    if (like && enableLike) {
+      addComentoes(shopDetails, authenticationUser);
+    }
 
     if (!like && !enableLike) {
       excludeComentoes(shopDetails, authenticationUser);
     }
-    
 
     const result = await updateComentoes(requestPath, shopDetails);
     return result;
