@@ -14,7 +14,8 @@ Expressはポート4000
 JsonServerはポート3000
 で、それぞれ起動します。
 詳細はu-vinci_draft内にあるpackage.jsonを参照してください。
-GoogleMapsKeyの設定は不要です。
+GoogleMapsKeyの設定は必須です！
+発行と入力をお願いいたします！
 
 ### API Key を設定
 
