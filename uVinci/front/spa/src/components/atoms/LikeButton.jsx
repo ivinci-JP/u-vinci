@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import { Avatar, Button, Typography, makeStyles } from "@material-ui/core";
 
 // assets
-import UVinci from "../../assets/UVinci.svg";
+// react-scripts 4.x -> 5.x アップデートにおいてSVG読み込みに失敗するようになったため対応。
+// https://github.com/facebook/create-react-app/issues/11770#issuecomment-1022024494
+// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
+import UVinci from "!file-loader!../../assets/UVinci.svg";
 
 const useStyles = makeStyles(() => ({
   logo: {
