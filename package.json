@@ -12,7 +12,7 @@
     "startuVinci": "npx -w uVinci/api npm run startMockServer &&npx -w uVinci/front/spa npm run startReact"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ivinci-JP/u-vinci_draft/issues"
   },
