@@ -40,9 +40,6 @@ u-Vinci はすでにエンドユーザーが使用を開始していて、機能
 <br>
 削除例：curl -D - -X PUT -H 'token:775167ec-e803-4664-bc9e-229bfd7909ab' -H 'Content-Type:application/json' -d '{"user":{"id":"U88888","name":"シンニュー・シャイン"}}' http://localhost:4000/restaurants/SHOP03/unlike
 
-- Gitコミット時にprettierを動作させる実装をhuskyとlint-stagedで実装しております。
-
-
 # ご担当の方へ
 
 ## 流れについて
@@ -51,6 +48,11 @@ u-Vinci はすでにエンドユーザーが使用を開始していて、機能
 - "ユニークな番号_苗字"のような branch を作り、それを親 branch として、課題ごとに checkout & Pull Request という流れでお願いします
 - この親 branch を、課題中では課題着手者の名前を記載します
 - 研修担当者は PR に対してレビューを行い、指摘対応後に Merge してあげてください
+
+## お願い
+
+課題着手者には、本課題の対応に専念していただきたく思っており、コーディングのルールについては気にせず対応できるようにlint-stagedを導入しています。
+コミット時に自動で整形されるので、その旨を課題着手者に共有してあげてください。
 
 ## Front 課題
 
