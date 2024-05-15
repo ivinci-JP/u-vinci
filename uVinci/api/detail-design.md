@@ -90,11 +90,11 @@ GET /restaurants/:id
 
 # 米ん人になる
 
-POST /restaurants/:id/like
+POST /restaurants/:detailedShopId/like
 
 # 米ん人をやめる
 
-DELETE /restaurants/:id/unlike
+DELETE /restaurants/:detailedShopId/unlike
 
 ## リクエスト内容
 
