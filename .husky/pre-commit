@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx lint-staged
 npx prettier --write 'uVinci/**/*.json'
 npx prettier --write 'uVinci/**/*.js'
 npx prettier --write 'uVinci/**/*.mjs'
