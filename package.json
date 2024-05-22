@@ -38,7 +38,7 @@
     "prettier": "^2.2.1"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.{js,css,md}": "prettier --write"
+    "uVinci/front/**/*.{mjs,jsx}": "eslint --cache --fix",
+    "*.{*js*,css,md}": "prettier --write"
   }
 }
