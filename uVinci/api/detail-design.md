@@ -21,18 +21,6 @@
 
 # エンドポイント
 
-# ログイン
-
-POST /login
-
----
-
-# ログアウト
-
-DELETE /login
-
----
-
 # 飲食店一覧
 
 GET /restaurants
@@ -94,7 +82,7 @@ POST /restaurants/:detailedShopId/like
 
 # 米ん人をやめる
 
-DELETE /restaurants/:detailedShopId/unlike
+PUT /restaurants/:detailedShopId/unlike
 
 ## リクエスト内容
 
