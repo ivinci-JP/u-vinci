@@ -38,7 +38,10 @@ u-Vinci はすでにエンドユーザーが使用を開始していて、機能
 「米ん人になる」操作の結果は永続化されているため、ボタンを押すとユーザーがDBのComentoesに追加されます。
 削除方法はcurlコマンドを使用するか、直接、db.json内の該当ユーザーのデータを消す等行ってください。 \
 <br>
-削除例：curl -D - -X PUT -H 'token:775167ec-e803-4664-bc9e-229bfd7909ab' -H 'Content-Type:application/json' -d '{"user":{"id":"U88888","name":"シンニュー・シャイン"}}' http://localhost:4000/restaurants/SHOP03/unlike
+削除例：
+```sh
+curl -D - -X PUT -H 'token:775167ec-e803-4664-bc9e-229bfd7909ab' -H 'Content-Type:application/json' -d '{"user":{"id":"U88888","name":"シンニュー・シャイン"}}' http://localhost:4000/restaurants/SHOP03/unlike
+```
 
 # ご担当の方へ
 
