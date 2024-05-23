@@ -9,7 +9,7 @@
 上司からの指示で調査・対応することとなった。
 
 ![spa_f02_0.png](spa_f02_0.png)
-![alt text](spa_f02_1.png)
+![spa_f02_1.png](spa_f02_1.png)
 
 ## 課題
 

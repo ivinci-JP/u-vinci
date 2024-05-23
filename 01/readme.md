@@ -7,7 +7,7 @@
 上司でからの指示で、調査・対応することとなった。
 
 ![spa_f01_0.png](spa_f01_0.png)
-![alt text](spa_f01_1.png)
+![spa_f01_1.png](spa_f01_1.png)
 
 ## 課題
 
