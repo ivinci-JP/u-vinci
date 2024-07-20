@@ -32,15 +32,15 @@ u-Vinci はすでにエンドユーザーが使用を開始していて、機能
 
 <= to be continued ===
 
-
 ## スタブデータについて
 
-「米ん人になる」操作の結果は永続化されているため、ボタンを押すとユーザーがDBのComentoesに追加されます。
-削除方法はcurlコマンドを使用するか、直接、db.json内の該当ユーザーのデータを消す等行ってください。 \
+「米ん人になる」操作の結果は永続化されているため、ボタンを押すとユーザーが DB の Comentoes に追加されます。
+削除方法は curl コマンドを使用するか、直接、db.json 内の該当ユーザーのデータを消す等行ってください。 \
 <br>
 削除例：
+
 ```sh
-curl -D - -X PUT -H 'token:775167ec-e803-4664-bc9e-229bfd7909ab' -H 'Content-Type:application/json' -d '{"user":{"id":"U88888","name":"シンニュー・シャイン"}}' http://localhost:4000/restaurants/SHOP03/unlike
+curl -D - -X DELETE -H 'token:775167ec-e803-4664-bc9e-229bfd7909ab' -H 'Content-Type:application/json' -d '{"user":{"id":"U88888","name":"シンニュー・シャイン"}}' http://localhost:4000/restaurants/SHOP03/unlike
 ```
 
 # ご担当の方へ
@@ -48,20 +48,20 @@ curl -D - -X PUT -H 'token:775167ec-e803-4664-bc9e-229bfd7909ab' -H 'Content-Typ
 ## 流れについて
 
 - 最初に課題着手者要のブランチを一緒に作ってあげてください
-- "ユニークな番号_苗字"のような branch を作り、それを親 branch として、課題ごとに checkout & Pull Request という流れでお願いします
+- "ユニークな番号\_苗字"のような branch を作り、それを親 branch として、課題ごとに checkout & Pull Request という流れでお願いします
 - この親 branch を、課題中では課題着手者の名前を記載します
 - 研修担当者は PR に対してレビューを行い、指摘対応後に Merge してあげてください
 
 ## お願い
 
-課題着手者には、本課題の対応に専念していただきたく思っており、コーディングのルールについては気にせず対応できるようにlint-stagedを導入しています。\
+課題着手者には、本課題の対応に専念していただきたく思っており、コーディングのルールについては気にせず対応できるように lint-staged を導入しています。\
 コミット時に自動で整形されるので、その旨を課題着手者に共有してあげてください。
 
-lint-stagedにつきましては、初回に「npm intall」を行えば動作する設定となっております。
+lint-staged につきましては、初回に「npm intall」を行えば動作する設定となっております。
 
 ## Front 課題
 
-[./uVinci](uVinci)配下の01,02,03ディレクトリ\
+[./uVinci](uVinci)配下の 01,02,03 ディレクトリ\
 [readme](uVinci/front/spa/readme.md)
 
 ---
@@ -70,11 +70,12 @@ lint-stagedにつきましては、初回に「npm intall」を行えば動作�
 
 # 作った人
 
-UKさん
+UK さん
 
 # モックサーバーへの移行をした人
+
 YA
 
-新人研修にて、本課題を着手した後に、UKさんやFさんをはじめとする\
+新人研修にて、本課題を着手した後に、UK さんや F さんをはじめとする\
 チームメンバーの方々の指示の元、モックサーバーへの移行を\
 この度、担当させていただきました！
