@@ -59,7 +59,7 @@ const MapWidget = () => {
         center={CONSTS.INITIAL_POSITION}
         zoom={CONSTS.INITIAL_ZOOM}
         onBoundsChanged={() => {
-          console.log(mapView.getBounds());
+          console.log(mapView.getBounds()); // eslint-disable-line no-console
         }}
         onLoad={onLoad}
         onUnmount={onUnmount}
