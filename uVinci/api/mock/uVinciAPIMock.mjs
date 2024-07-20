@@ -116,7 +116,7 @@ app.put("/restaurants/:detailedShopId/like", async function (req, res) {
   }
 });
 
-app.put("/restaurants/:detailedShopId/unlike", async function (req, res) {
+app.delete("/restaurants/:detailedShopId/unlike", async function (req, res) {
   try {
     const authenticationUser = req.body.user;
     const authenticationToken = req.headers.token;
