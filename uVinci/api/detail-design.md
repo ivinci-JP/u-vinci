@@ -82,7 +82,7 @@ POST /restaurants/:detailedShopId/like
 
 # 米ん人をやめる
 
-PUT /restaurants/:detailedShopId/unlike
+DELETE /restaurants/:detailedShopId/unlike
 
 ## リクエスト内容
 
