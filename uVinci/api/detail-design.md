@@ -2,37 +2,16 @@
 
 # 役割
 
-- 外部 API や DB から情報を取得する
-- ログイン機能
-- 整形し React に情報を提供する
+- DB から情報を取得する
 - REST API
 
 # 使用技術
 
 - express
-- sinon
 
 # 飲食店の紐付け
 
 飲食店ごとのユニーク ID で識別する
-
----
-
----
-
-# エンドポイント
-
-# ログイン
-
-POST /login
-
----
-
-# ログアウト
-
-DELETE /login
-
----
 
 # 飲食店一覧
 
@@ -91,7 +70,11 @@ GET /restaurants/:id
 
 # 米ん人になる
 
-POST /restaurants/:id/like
+POST /restaurants/:detailedShopId/like
+
+# 米ん人をやめる
+
+DELETE /restaurants/:detailedShopId/unlike
 
 ## リクエスト内容
 

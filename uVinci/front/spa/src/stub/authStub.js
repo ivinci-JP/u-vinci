@@ -1,5 +1,4 @@
-const getToken = () =>
-  "almost-everything–all-external-expectations-all-pride-all-fear-of-embarrassment-or-failure–these-things-just-fall-away-in-the-face-of-death-leaving-only-what-is-truly-important";
+const getToken = () => "775167ec-e803-4664-bc9e-229bfd7909ab";
 
 const getUser = () => ({ id: "U88888", name: "シンニュー・シャイン" });
 

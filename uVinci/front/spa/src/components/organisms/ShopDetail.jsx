@@ -1,7 +1,8 @@
 // lib
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { Box, Divider, Drawer, Link, Typography } from "@material-ui/core";
+import PropTypes from "prop-types";
+import { useCookies } from "react-cookie";
 
 // consts
 import CONSTS from "../../constants/consts";
@@ -9,9 +10,8 @@ import CONSTS from "../../constants/consts";
 // components
 import ComentoesList from "../molecules/ComentoesList";
 
-// stub
-import uVinciAPIStub from "../../stub/uVinciAPIStub";
-import authStub from "../../stub/authStub";
+// service
+import request from "../../service/index";
 
 const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const anchor = "right";
@@ -21,39 +21,37 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
   const [shopAccess, setShopAccess] = useState();
   const [shopUrl, setShopUrl] = useState();
   const [shopTagline, setShopTagline] = useState();
+  const [cookies] = useCookies();
 
   useEffect(() => {
-    const {
-      result: { name, access, url, comentoes, catch: tagline } = {},
-      status,
-    } = uVinciAPIStub.get(
-      `http://${process.env.REACT_APP_API_HOSTNAME}/${
-        CONSTS.RESTAURANTS_PATHNAME
-      }/${detailedShopId ?? ""}`
-    );
-    setLatestComentoes(comentoes);
-    setShopName(name);
-    setShopAccess(access);
-    setShopUrl(url);
-    setShopTagline(tagline);
+    const getShopDetails = async () => {
+      const response = await request.getShopDetails(detailedShopId);
 
-    console.log({ status });
-  }, [detailedShopId]);
+      const { name, comentoes, access, catch: tagline, url } = response.result;
 
-  const handleLike = () => {
-    const option = {
-      header: { token: authStub.getToken() },
-      body: { user: authStub.getUser() },
+      setLatestComentoes(comentoes);
+      setShopName(name);
+      setShopAccess(access);
+      setShopUrl(url);
+      setShopTagline(tagline);
     };
 
-    const { result: { comentoes: updatedComentoes } = {} } = uVinciAPIStub.post(
-      `http://${process.env.REACT_APP_API_HOSTNAME}/${
-        CONSTS.RESTAURANTS_PATHNAME
-      }/${detailedShopId ?? ""}/${CONSTS.LIKE_PATHNAME}`,
+    getShopDetails();
+  }, [detailedShopId]);
+
+  const handleLike = async () => {
+    const option = {
+      headers: { token: cookies.token },
+      body: { user: cookies.user }
+    };
+
+    const response = await request.addComento(
+      detailedShopId,
+      CONSTS.LIKE_PATHNAME,
       option
     );
 
-    setLatestComentoes(updatedComentoes);
+    setLatestComentoes(response.result.comentoes);
   };
 
   return (
@@ -87,11 +85,11 @@ const ShopDetail = ({ detailedShopId, setDetailedShopId }) => {
 
 ShopDetail.propTypes = {
   detailedShopId: PropTypes.string,
-  setDetailedShopId: PropTypes.func.isRequired,
+  setDetailedShopId: PropTypes.func.isRequired
 };
 
 ShopDetail.defaultProps = {
-  detailedShopId: null,
+  detailedShopId: null
 };
 
 export default ShopDetail;
