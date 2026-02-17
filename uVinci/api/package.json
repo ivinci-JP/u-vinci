@@ -24,7 +24,7 @@
   "dependencies": {
     "express": "^4.18.2",
     "json-server": "^0.17.4",
-    "axios": "^1.6.1",
+    "axios": "^1.13.5",
     "cors": "^2.8.5"
   },
   "devDependencies": {
